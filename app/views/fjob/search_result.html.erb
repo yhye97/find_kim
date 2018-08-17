@@ -1,0 +1,271 @@
+
+
+
+<!—navbar—>
+<div id="fp-nav" class="right">
+<span data-menuanchor="firstPage" class="menu_object"><a href="#firstPage"><i class="home icon"></i></a></span>
+
+<span data-menuanchor="secondPage" class="ui menu_object" ><a href = "javascript:;" id="search_button"><i class="search icon"></i></a></span>
+
+<!--<span data-menuanchor="" class="menu_object" id="user_popup"><a><i class="user icon"></i></a></span>-->
+
+<!--<span data-menuanchor="" class="menu_object" id="login_popup"><a><i class="key icon"></i></a></span>-->
+</div>
+
+
+
+
+
+<div class="ui container">
+
+<div id="js-load" class="ui six doubling cards">
+
+
+
+
+<%if @check_data.count() == 0%>
+    <%if @search_data.count() == 0%>
+    검색결과 없음
+    <%else%>
+    <% @search_data.each do |user| %>
+        <%user_r=Review.find(user.id)%>
+        <li class="js-load card">
+
+            <div class="image" href = "">
+                <img src="<%user.portfolio_img%>">
+            </div>
+            <div class="content">
+                <div class="header"><%= user.name %></div>
+                <div class="meta">
+                    <a><%= user.category%></a>
+                </div>
+                <div class="description">
+                    <%=user.career%>
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="right floated">
+                    <%= user.nickname%>
+                </span>
+                <span>
+                    <i class="user icon"></i>
+                    <%=user_r.ratings/user_r.total_rater_num%>
+                </span>
+                Review_text : <%=user_r.review_text%> <br>
+                <form action="/friendship/invite" method "post" >
+                <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
+                <input type="hidden" name="requester" value="<%=current_user.id%>">
+                <input type= "hidden" name = "bool" value = "false">
+                <button type="submit" class="btn btn-primary">친구요청</button>
+                </form>
+            </div>
+
+        </li>
+        
+    <% end %>
+    <% end %>
+<%else%>
+    <%if @check_data.count() == 0%>
+    검색결과 없음
+    <%else%>
+    <% @check_data.each do |user| %>
+<li class="js-load card">
+
+<div class="image" href = "">
+<img src="<%user.portfolio_img%>">
+</div>
+<div class="content">
+<div class="header"><%= user.name %></div>
+<div class="meta">
+<a><%= user.category%></a>
+</div>
+<div class="description">
+<%=user.career%>
+</div>
+</div>
+<div class="extra content">
+<span class="right floated">
+<%= user.nickname%>
+</span>
+<span>
+<i class="user icon"></i>
+
+<%=user_r.ratings/user_r.total_rater_num%>
+</span>
+</div>
+
+</li>
+        <form action="/friendship/invite" method "post" >
+        <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
+        <input type="hidden" name="requester" value="<%=current_user.id%>">
+        <input type= "hidden" name = "bool" value = "false">
+        <button type="submit" class="btn btn-primary">친구요청</button>
+        </form>
+<% end %>
+<% end %>
+<%end%>
+
+<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">더보기</a> </div>
+</div>
+
+
+
+
+<div class="ui top very wide sidebar vertical menu">
+
+<button class="ui inverted green button" id="greenbutton">greenbutton</button>
+
+
+<form class = "pusher">
+<div class="search_table">
+
+<div class="search_list category">
+<div class="search_title">
+<p>CATAGORY</p>
+</div>
+
+<div class="choose_content checkboxes category_checkbox">
+<input class="check" type="checkbox" name="create" id="create" value="create"><label for="create" class="highlight check_catagory">CREATOR</label>
+
+<input class="check" type="checkbox" name="edit" id="edit" value="edit"><label for="edit" class="highlight check_catagory">EDITOR</label>
+
+<input class="check" type="checkbox" name="write" id="write" value="write"><label for="write" class="highlight check_catagory">WRITER</label>
+
+<input class="check" type="checkbox" name="photo" id="photo" value="photo"><label for="photo" class="highlight check_catagory">PHOTOGRAPHER</label>
+
+<input class="check" type="checkbox" name="design" id="design" value="design"><label for="design" class="highlight check_catagory">DESIGNER</label>
+
+<input class="check" type="checkbox" name="trans" id="trans" value="trans"><label for="trans" class="highlight check_catagory">TRANSLATOR</label>
+
+<input class="check" type="checkbox" name="market" id="market" value="market"><label for="market" class="highlight check_catagory">MARKETER</label>
+
+<input class="check" type="checkbox" name="etc" id="etc" value="etc"><label for="etc" class="highlight check_catagory">ETC</label>
+</div>
+</div>
+
+<div class="search_list day">
+
+<div class="search_title">
+<p>DAY</p>
+</div>
+
+<div class="choose_content checkboxes day_checkbox">
+
+<input class="check" type="checkbox" name="mon" id="mon" value="mon"><label for="mon" class="highlight check_day">Mon</label>
+
+<input class="check" type="checkbox" name="tue" id="tue" value="tue"><label for="tue" class="highlight check_day">Tue</label>
+
+<input class="check" type="checkbox" name="wed" id="wed" value="wed"><label for="wed" class="highlight check_day">Wed</label>
+
+<input class="check" type="checkbox" name="thu" id="thu" value="thu"><label for="thu" class="highlight check_day">Thu</label>
+
+<input class="check" type="checkbox" name="fri" id="fri" value="fri"><label for="fri" class="highlight check_day">Fri</label>
+
+<input class="check" type="checkbox" name="sat" id="sat" value="sat"><label for="sat" class="highlight check_day">Sat</label>
+
+<input class="check" type="checkbox" name="sun" id="sun" value="sun"><label for="sun" class="highlight check_day">Sun</label>
+</div>
+</div>
+
+<div class="search_list contract">
+
+<div class="search_title">
+<p>CONTRACT</p>
+</div>
+
+<div class="choose_content contract_numberbox">
+<label for="contract" class="highlight numberbox_label">
+<input class="numberbox" type="number" min="0" max="24" name="contract" id="contract" placeholder="12">개월</label>
+</div>
+
+</div>
+
+<div class="search_list timetotime">
+
+<div class="search_title">
+<p>TIME</p>
+</div>
+
+<div class="choose_content textboxes">
+<div class="time_textbox">
+
+<label for="start_time" class="highlight numberbox_label">
+<input class="numberbox" type="number" min="0" max="24" name="start_time" id="start_time" placeholder="09">시 부터</label>
+
+<label for="end_time" class="highlight numberbox_label">
+<input class="numberbox" type="number" min="0" max="24" name="end_time" id="emd_time" placeholder="18">시 까지</label>
+</div>
+
+</div>
+</div>
+
+<div class="search_list totaltime">
+
+<div class="search_title">
+<p>TOTAL</p>
+</div>
+
+
+<div class="choose_content textboxes">
+<div class="time_textbox">
+
+<label for="working_time" class="highlight numberbox_label">
+<input class="numberbox" type="number" min="0" max="24" name="working_time" id="working_time" placeholder="9">시간</label>
+
+</div>
+</div>
+</div>
+
+<div class="search_list location">
+
+<div class="search_title">
+<p>LOCATION</p>
+</div>
+
+<div class="choose_content textboxes">
+<div class="location_textbox">
+
+
+<label for="city" class="highlight textbox_label">
+<input class="textbox location_input" type="text" name="city" id="city" placeholder="서울">시</label>
+
+<label for="gu" class="highlight textbox_label">
+<input class="textbox location_input" type="text" name="gu" id="gu" placeholder="노원">구</label>
+</div>
+</div>
+</div>
+
+<div class="search_list environment">
+
+<div class="search_title">
+<p>ENVIRONMENT</p>
+</div>
+
+<div class="choose_content checkboxes environment_checkbox">
+<input class="check" type="checkbox" name="home" id="home" value="home"><label for="home" class="highlight">HOME</label>
+<input class="check" type="checkbox" name="office" id="office" value="office"><label for="office" class="highlight">OFFICE</label>
+</div>
+</div>
+
+<div class="search_list">
+
+<a href="searchresult.html" class="search_list_submit" type="submit" value="F I N D"></a>
+
+</div>
+
+
+</div>
+</form>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+  </script>
+<script src="/assets/myjs.js"></script>
+<script src="/assets/rating.js"></script>
+<script src="/assets/semantic.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/assets/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/icon.css">
+<link rel="stylesheet" type="text/css" href="/assets/style.css">

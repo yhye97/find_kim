@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+<head>
+	
+  <title>FIND KIM</title>
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- fullPage -->
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" type="text/css" href="/assets/javascript.fullPage.css" />
+
+		
+	<!-- semantic Ui -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+	
+
+	<!-- section 2 tile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	
+	<link rel="stylesheet" href="/assets/main.css" />
+	<!-- ----------- -->
+
+</head>
+
+<body>
+
+<!--navbar-->
+<div id="fp-nav" class="right">
+	<span data-menuanchor="firstPage" class="menu_object"><a href="#firstPage"><i class="home icon"></i></a></span>	
+				
+
+	<!--
+	<span data-menuanchor="4thpage" class="menu_object"><a href="#4thpage"><i class="wrench icon"></i></a></span>
+				
+	<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>
+	-->
+
+	
+	<span data-menuanchor="secondPage" class="menu_object" ><a href="#secondPage"><i class="search icon"></i></a></span>
+	
+	<% if current_user.nil? == true %>
+		<span data-menuanchor="" class="menu_object" id="login_popup">
+			<a href ="/users/sign_in"><i class="lock icon"></i></a>
+		</span>
+	<%elsif current_user.nil? == false %>
+    <%if Fjob.exists?(current_user.id)==false%>
+	    <span data-menuanchor="" class="menu_object" id="user_popup">
+	    	<a href ="/fjob/new"><i class="user icon"></i></a>
+	    </span>
+    <%else%>
+      <a href="/fjob/show/<%=current_user.id%>">Profile</a>
+    <%end%>
+      <span data-menuanchor="" class="menu_object">
+       <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
+      </span>
+    <%end %>
+				
+</div>
+	
+<!--navbar popup-->
+
+		
+
+
+
+<div class="ui category tiny modal">
+  <i class="close icon"></i>
+  <div class="image content">
+
+    <div class="description">
+      <div class="ui header">카테고리</div>
+    </div>
+  </div>
+	
+  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+    <div class="ui positive right labeled icon button">
+      Yep, that's me
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+
+<%= yield %>
+
+<!--jQuery CDN-->
+<script
+	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous">
+</script>	
+
+	
+<!--fullpage javascript-->
+<script src="assets/javascript.fullPage.js"></script>
+
+	
+<!--sementic UI-->			
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+
+
+<script type="text/javascript">
+	
+	//fullpage javascript
+	fullpage.initialize('#fullpage', {
+		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+		menu: '#menu',
+		css3:true
+	});
+
+	//navbar popup_semantic-UI
+	$("#category_popup").click(function(){
+  	$(".ui.tiny.category.modal").modal('show');});
+	
+	$("#login_popup").click(function(){
+ 	$(".ui.mini.login.modal").modal('show');});
+	
+	//login error_semantic-UI
+	  $(document)
+	    .ready(function() {
+	      $('.ui.form')
+	        .form({
+	          fields: {
+	            email: {
+	              identifier  : 'email',
+	              rules: [
+	                {
+	                  type   : 'empty',
+	                  prompt : 'Please enter your e-mail'
+	                },
+	                {
+	                  type   : 'email',
+	                  prompt : 'Please enter a valid e-mail'
+	                }
+	              ]
+	            },
+	            password: {
+	              identifier  : 'password',
+	              rules: [
+	                {
+	                  type   : 'empty',
+	                  prompt : 'Please enter your password'
+	                },
+	                {
+	                  type   : 'length[6]',
+	                  prompt : 'Your password must be at least 6 characters'
+	                }
+	              ]
+	            }
+	          }
+	        })
+	      ;
+	    })
+	  ;
+  
+	//section1_checkboxes are checked all
+	//category checked all
+	$('#category-check-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[class=category_checkbox]').each(function() {
+            this.checked = true;                        
+        });
+    } else {
+        $('input[class=category_checkbox]').each(function() {
+            this.checked = false;                       
+        });
+    }
+	});
+	
+	//day checked all
+	$('#day-check-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[class=day_checkbox]').each(function() {
+            this.checked = true;                        
+        });
+    } else {
+        $('input[class=day_checkbox]').each(function() {
+            this.checked = false;                       
+        });
+    }
+	});
+	
+	//workat checked all
+	$('#workat-check-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $('input[class=workat_checkbox]').each(function() {
+            this.checked = true;                        
+        });
+    } else {
+        $('input[class=workat_checkbox]').each(function() {
+            this.checked = false;                       
+        });
+    }
+	});
+	
+</script>
+
+</body>
+</html>
