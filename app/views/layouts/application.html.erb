@@ -2,35 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
 <head>
-	
-  <title>FIND KIM</title>
-  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-	<!-- fullPage -->
-	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
-	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
-	<meta name="Resource-type" content="Document" />
-
-	<link rel="stylesheet" type="text/css" href="/assets/javascript.fullPage.css" />
-
-		
-	<!-- semantic Ui -->
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
-	
-
-	<!-- section 2 tile -->
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	
-	<link rel="stylesheet" href="/assets/main.css" />
-	<!-- ----------- -->
 
 </head>
 
@@ -52,15 +26,15 @@
 	
 	<% if current_user.nil? == true %>
 		<span data-menuanchor="" class="menu_object" id="login_popup">
-			<a href ="/users/sign_in"><i class="lock icon"></i></a>
+			<a><i class="lock icon"></i></a>
 		</span>
-	<%elsif current_user.nil? == false %>
+	<%else current_user.nil? == false %>
     <%if Fjob.exists?(current_user.id)==false%>
 	    <span data-menuanchor="" class="menu_object" id="user_popup">
 	    	<a href ="/fjob/new"><i class="user icon"></i></a>
 	    </span>
     <%else%>
-      <a href="/fjob/show/<%=current_user.id%>">Profile</a>
+      <a href="/fjob/show/<%=current_user.id%>"><i class="user icon"></i></a>
     <%end%>
       <span data-menuanchor="" class="menu_object">
        <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
@@ -70,9 +44,34 @@
 </div>
 	
 <!--navbar popup-->
-
+<div class="ui first couple login mini modal">
+  
+	<i class="close icon"></i>
+   
+	<div class="ui basic segment">
+  	
+		<div class="ui center aligned huge header">로그인</div>
+			<%= render "devise/sessions/new" %>
 		
+		  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+		</div>
+		</div>
 
+	
+	
+	<div class="ui second couple signup mini modal">
+  
+	<i class="close icon"></i>
+   
+	<div class="ui basic segment">
+  	
+		<div class="ui center aligned huge header">회원가입</div>
+			<%= render "devise/registrations/new" %>
+		</div>
+	</div>
 
 
 <div class="ui category tiny modal">
@@ -126,8 +125,18 @@
 	$("#category_popup").click(function(){
   	$(".ui.tiny.category.modal").modal('show');});
 	
+	$('.coupled.modal')
+  .modal({
+    allowMultiple: false
+  });
+  
+  $('.second.modal')
+  .modal('attach events', '.first.modal .button')
+  
 	$("#login_popup").click(function(){
- 	$(".ui.mini.login.modal").modal('show');});
+ 	$(".ui.first.mini.login.modal").modal('show');});
+	
+	
 	
 	//login error_semantic-UI
 	  $(document)

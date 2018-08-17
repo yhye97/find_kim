@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		
+  <title>FIND KIM</title>
+  
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- fullPage -->
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
+	<meta name="Resource-type" content="Document" />
+
+	<!-- semantic Ui -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+	
+
+	<!-- section 2 tile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- ----------- -->
+
+	
+</head>
+
+<body>
 <div id="fullpage">
       
 	<!--section 0-->
@@ -14,25 +45,27 @@
 				<div class="section0_content_search">
 					<div class="ui basic segment">
 						<div class="ui fluid massive icon input">
-							<input type="text" placeholder="내가 아는 김서방">
-							<i class="search icon"></i>
+							<form action="/fjob/search_result" method="post">
+							<input type="text" placeholder="내가 아는 김서방" name="search_want">
+							<input type="submit"><i class="search icon"></i></input>
+							</form>
 						</div>
 					</div>
 				</div>
 			
-				<div class="section0_content_linker">
-					<div class="ui basic segmnet">
-						<div class="ui very relaxed horizontal list">
-							<div class="item">
-								<a data-menuanchor="secondPage" href="#secondPage">찾으러 가기</a>
-							</div>
+				<!--<div class="section0_content_linker">-->
+				<!--	<div class="ui basic segmnet">-->
+				<!--		<div class="ui very relaxed horizontal list" >-->
+				<!--			<div class="item">-->
+				<!--				<a data-menuanchor="secondPage" href="#secondPage">찾으러 가기</a>-->
+				<!--			</div>-->
 
-							<div class="item">
-								<a data-menuanchor="3rdPage" href="#3rdPage">오늘의 김서방</a>
-							</div>
-						</div>
-					</div>
-				</div>
+				<!--			<div class="item">-->
+				<!--				<a data-menuanchor="3rdPage" href="#3rdPage">오늘의 김서방</a>-->
+				<!--			</div>-->
+				<!--		</div>-->
+				<!--	</div>-->
+				<!--</div>-->
 				
 			</div>
 		</div>
@@ -53,7 +86,7 @@
 				<div class="section1_content">
 					<div class="ui very padded left aligned segment">
 
-						<form class="ui form">
+						<form class="ui form" action="/fjob/search_result" method="post">
 							
 							<div>
 								<h4 class="ui left aligned header">CATEGORY</h4>
@@ -82,48 +115,6 @@
 											</div>
 
 
-		<!--
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>CREATOR</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>DESIGNER</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>EDITOR</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>WRITER</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>PHOTOGRAPHER</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>TRANSLATOR</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>MARKETER</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>ETC</label>
-										</div>
-		-->
-
 									</div>
 
 							<div>
@@ -148,42 +139,6 @@
 
 										<input class="day_checkbox" type="checkbox" name="day-check-all" id="day-check-all"><label for="day-check-all" class="highlight check_catagory">ANY DAY</label>
 
-		<!--
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>월</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>화</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>수</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>목</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>금</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>토</label>
-										</div>
-
-										<div class="ui checked checkbox">
-											<input type="checkbox">
-											<label>일</label>
-										</div>
-		-->
 										</div>
 									</div>
 
@@ -193,7 +148,7 @@
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12">
+											<input type="number" min="0" max="24" placeholder="12" id = "contract">
 											<label>개월</label>
 										</div>
 
@@ -205,13 +160,18 @@
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12">
+											<input type="number" min="0" max="24" placeholder="12" id = "start_time">
 											<label>시 부터</label>
 										</div>
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12">
+											<input type="number" min="0" max="24" placeholder="12" id = "end_time">
 											<label>시 까지</label>
+										</div>
+										
+										<div class="ui transparent input">
+											<input type="number" min="0" max="12" placeholder="12" id = "end_time">
+											<label>TOTAL TIME</label>
 										</div>
 
 									</div>
@@ -227,7 +187,7 @@
 										</div>
 
 										<div class="ui transparent input">
-											<input type="text" placeholder="노원">
+											<input type="text" id = "gu" placeholder="노원">
 											<label>구</label>
 										</div>
 
@@ -250,7 +210,7 @@
 									</div>
 
 							<div class="twenty wide field">
-								<div class="fluid ui submit button">FIND KIM</div>
+								<input type="submit" value="FIND">FIND KIM</input>
 							</div>
 
 						</form>
@@ -276,7 +236,7 @@
 			<div class="tiles">			
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -286,7 +246,7 @@
 
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -296,7 +256,7 @@
 				
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -306,7 +266,7 @@
 				
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -316,7 +276,7 @@
 				
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -326,7 +286,7 @@
 				
 				<article>
 					<span class="image">
-						<img src="images/pic01.jpg" alt="" />
+						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
 						<h3><a href="landing.html" class="link">Aliquam</a></h3>
@@ -349,7 +309,9 @@
     
 </div>
 
+</body>
 
+</html>
 
 
 

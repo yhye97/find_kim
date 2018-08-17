@@ -63,7 +63,49 @@ class FjobController < ApplicationController
     def search_result
         @search_data = Fjob.where('nickname = ? OR category = ? OR location = ? OR career = ?', params[:search_want], params[:search_want], params[:search_want], params[:search_want])
         @c_user=Fjob.find(current_user.id)
-        @check_data = Fjob.where('category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ?', params[:create], params[:edit], params[:write], params[:photo], params[:design], params[:trans], params[:market], params[:etc]).where('date = ? OR date = ? OR date = ? OR date = ? OR date = ? OR date = ? OR date = ?', params[:mon], params[:tue], params[:wed], params[:thu], params[:fri], params[:sat], params[:sun]).where('contract = ?', params[:contract]).where('starttime = ?', params[:start_time]).where('endtime = ?', params[:end_time]).where('timetotal = ?', params[:working_time]).where('location = ? OR location = ?', params[:city], params[:gu]).where('home_environment = ? OR home_environment = ?', params[:home], params[:office])
+        if (params[:create].nil? and params[:edit].nil? and params[:write].nil? and  params[:photo].nil? and params[:design].nil? and params[:trans].nil? and params[:market].nil? and params[:etc].nil?) == false
+            params[:create] = "creat"
+            params[:edit] = "edit"
+            params[:write] = "write"
+            params[:photo] = "photo"
+            params[:design] = "design"
+            params[:trans] = "trans"
+            params[:market] = "market"
+            params[:etc] = "etc"
+        end
+        if (params[:mon].nil? and params[:tue].nil? and params[:wed].nil? and params[:thu].nil? and params[:fri].nil? and params[:sat].nil? and params[:sun].nil?) == false
+            params[:mon] = "mon"
+            params[:tue] = "tue"
+            params[:wed] = "wed"
+            params[:thu] = "thu"
+            params[:fri] = "fri"
+            params[:sat] = "sat"
+            params[:sun] = "sun"
+        end
+        if (params[:contract].nil?) == false
+            params[:contract] = Fjob.all
+        end
+        if (params[:start_time].nil?) == false
+            params[:start_time] = Fjob.all
+        end
+        if (params[:end_time].nil?) == false
+            params[:end_time] = Fjob.all
+        end
+        
+        if (params[:city].nil?) == false
+            params[:city] = Fjob.all
+        end
+        if (params[:gu].nil?) == false
+            params[:gu] = Fjob.all
+        end
+        if (params[:working_time].nil?) == false
+            params[:working_time] = Fjob.all
+        end
+        if (params[:home].nil? and params[:office].nil?) == false
+            params[:home] = "home"
+            params[:office] = "office"
+        end
+        @check_data = Fjob.where('category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ? OR category = ?', params[:create], params[:edit], params[:write], params[:photo], params[:design], params[:trans], params[:market], params[:etc]).where('date = ? OR date = ? OR date = ? OR date = ? OR date = ? OR date = ? OR date = ?', params[:mon], params[:tue], params[:wed], params[:thu], params[:fri], params[:sat], params[:sun]).where('contract = ?', params[:contract]).where('starttime = ?', params[:start_time]).where('endtime = ?', params[:end_time]).where('timetotal = ?', params[:totaltime]).where('location = ? OR location = ?', params[:city], params[:gu]).where('home_environment = ? OR home_environment = ?', params[:home], params[:office])
     end
     
     def profile
