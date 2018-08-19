@@ -73,45 +73,68 @@
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>Username</h4></label><br>
-                              <%= current_user.name %>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Nickname</h4></label><br>
-                            <%= current_user.nickname %>    
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label><br>
-                              <%= current_user.tel %>
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Email</h4></label><br>
-                             <%= current_user.email %>
-                          </div>
-                      </div>
-                     
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                                <a href ="/users/edit">
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>  Edit</button>
-                                </a>
-                               	
-                            </div>
-                      </div>
-              	</form>
+                  <form class="form" action="##" method="post" id="registrationForm"></form>
+              	
+              	<table class="table">
+    <thead>
+      <!--진우야 안녕 진우야 고생했어-->
+      <tr> 
+        <th>Username</th>
+        <th>Nickname</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= current_user.name %></td>
+        <td><%= current_user.nickname %></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th>Phone</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= current_user.tel %></td>
+        <td><%= current_user.email %></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-info" id="edit"><span class="glyphicon glyphicon-edit"></span> edit</button>
+  <button class="btn btn-success" id="save"><span class="glyphicon glyphicon-save"></span> save</button>
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+ <script src="//code.jquery.com/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+  <script>
+    $("#edit").click(function() {
+  $("#edit").hide();
+  $("td").each(function() {
+    var content = $(this).html();
+    $(this).html("<textarea>" + content + "</textarea>");
+  });
+
+  $("#save").show();
+  $(".info").fadeIn("fast");
+});
+
+$("#save").click(function() {
+  $("#save, .info").hide();
+  $("textarea").each(function() {
+    var content = $(this).val(); //.replace(/\n/g,"<br>");
+    $(this).html(content);
+    $(this)
+      .contents()
+      .unwrap();
+  });
+
+  $("#edit").show();
+});
+  </script>
+  
               
               <hr>
               

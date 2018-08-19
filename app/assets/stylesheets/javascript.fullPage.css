@@ -5,6 +5,85 @@
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
+	
+/* font import
+ * --------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
+		
+		
+/* Reset CSS
+ * --------------------------------------- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration:none;
+}
+table {
+	border-spacing: 0;
+}
+fieldset,img {
+	border: 0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-weight: normal;
+	font-style: normal;
+}
+strong{
+	font-weight: bold;
+	}
+ol,ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	}
+caption,th {
+	text-align: left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 100%;
+	margin:0;
+	padding:0;
+	color:#444;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { 
+  border: 0;
+}
+
+
+/* Custom CSS
+ * --------------------------------------- */
+body{
+	font-family: arial,helvetica;
+	color: #F2F2F2;
+}
+/*
+h1{
+	font-size: 6em;
+}
+*/
+/*
+p{
+	font-size: 2em;
+}
+*/
+.content {
+	position: relative;
+	/*top: 50%;*/
+	top: -1%;
+	text-align: center;
+}
+
+
 html.fp-enabled,
 .fp-enabled body {
     margin: 0;
@@ -85,7 +164,6 @@ html.fp-enabled,
 }
 .fp-scrollable {
     overflow: scroll;
-
 }
 .fp-notransition {
     -webkit-transition: none !important;
@@ -100,11 +178,11 @@ html.fp-enabled,
     top: 50%;
     opacity: 1;
 	*/
-    display: inline;
+  display: inline;
 	position: fixed;
-    z-index: 10;
-    top: 0.3em;
-    opacity: 1;	
+  z-index: 10;
+  top: 1px;
+  opacity: 1;	
 }
 /* navbar added code */
 #fp-nav span {
@@ -114,7 +192,7 @@ html.fp-enabled,
 	text-decoration: none;
 	text-align: center;
 	list-style-type: none;
-    overflow: hidden;
+  overflow: hidden;
 }
 #fp-nav.right {
 /* 	default    
@@ -224,32 +302,74 @@ html.fp-enabled,
 	display: block;
 	width: 100%;
 }
-
+.section_content {
+  display: block;
+  width: 100%;
+}
 
 /* section 0 
  * --------------------------------------- */
-.section0_title h1{
-    font-family: "Song Myung" ;
+#section0{
+	background-color: #BFDA00;
+	font-family: 'Jeju Myeongjo';
 }
-
-
-/* section 1
- * --------------------------------------- */
 .section0_title {
-	font-family: "Song Myung" ;
-	margin: 0 20%;
+  display: block;
+  margin: 0 30%;
 }
-.section0_content {
-	margin: 0 20%;
+.section0_title h1 {
+  color: black;
+  word-break: keep-all;
+  text-align: left;
 }
 .section0_content_search {
-	margin: 0 20%;
-	padding: 0 6em;
+  margin: 0 30%;
+}
+/*.section0_content_search span {*/
+/*	display: inline;*/
+/*	cursor: pointer;*/
+/*	text-decoration: none;*/
+/*	text-align: center;*/
+/*	color: #444;*/
+/*	list-style-type: none;*/
+/*}*/
+.section0_content_search_box {
+  font-family: 'Nanum Gothic';
+  font-weight: 300;
+  font-size: 18px;
+  display: block;
+	padding: 15px 17px;
+	width: 100%;
+	border: 2px solid #fff;
+  border-radius: 4px;
+  outline: none;
+  color: #444;
+	background-color: #fff;
+}
+.section0_content_search_submit {
+	background-color: transparent;
+	display: none;
+}
+.section0_content_linker {
+  margin: 5px 20%;
+}
+.section0_content_linker a{
+  font-size: 12px;
+  margin: 0 5px;
 }
 
 
 /* section 1
  * --------------------------------------- */
+#section1{
+	background-color: #2EBE21;
+}
+#section1 h1{
+	color: #fff;
+}
+#section1 p{
+	opacity: 0.8;
+}
 .section1_title {
 	margin: 0 50px;
 }
@@ -257,25 +377,28 @@ html.fp-enabled,
 	margin: 0 50px;
 	width: 60%;
 }
+.section1_content h4 {
+  color: black;
+}
 /*
 .checkboxes {
   list-style: none;
 }
 */
 .checkboxes label {
-	font-size: 13px;
+	font-size: 12px;
 	color: #444;
-	border-radius: 8px;
+	border-radius: 0;
 	background: transparent;
 	padding: 3px 8px;
-	border: 0.5px solid #444;
+	border: 1px solid #444;
 	text-align: center;
-	margin: 0 1px;
 }
 input[type=checkbox]:checked + label {
 	color: #fff;
-	background: #444;
-	font-weight: 800;
+	background: black;
+	border: 1px solid black;
+	border-radius: 0;
 }
 .checkboxes .check {
 	display: none;
@@ -294,10 +417,17 @@ input[type=number] ::-webkit-outer-spin-button, input[type=number]::-webkit-inne
 }
 
 
-
-
 /* section 2
  * --------------------------------------- */
+#section2{
+	background-color: #2C3E50;
+}
+#section2 h1{
+	color: #F2F2F2;
+}
+#section2 p{
+	opacity: 0.6;
+}
 .section2_title {
 	text-align: left;
 	height: 20%;
@@ -306,5 +436,20 @@ input[type=number] ::-webkit-outer-spin-button, input[type=number]::-webkit-inne
 	position: relative;
 	bottom: -26px;
 }
+
+
+/* Section 3
+ * --------------------------------------- */
+#section3{
+	background-color: #fff;
+}
+#section3 h1{
+	color: #444;
+}
+#section3 p{
+	opacity: 0.6;
+}
+
+
 
 

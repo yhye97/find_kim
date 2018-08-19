@@ -5,8 +5,6 @@
 		
   <title>FIND KIM</title>
   
-
-  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<!-- fullPage -->
@@ -14,44 +12,94 @@
 	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
 	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
 	<meta name="Resource-type" content="Document" />
+	
+	<link rel="stylesheet" type="text/css" href="assets/javascript.fullPage.css" />
 
 	<!-- semantic Ui -->
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+	<!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">-->
+	<link rel="stylesheet" type="text/css" href="assets/semantic.css">
 	
-
 	<!-- section 2 tile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- section 2 main.css -->
+	<link rel="stylesheet" type="text/css" href="assets/main.css" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
 	<!-- ----------- -->
 
-	
 </head>
 
+
 <body>
+	
+<!--navbar-->
+<div id="fp-nav" class="right">
+	<span data-menuanchor="firstPage" class="menu_object"><a href="#firstPage"><i class="home icon"></i></a></span>	
+				
+
+	
+	<span data-menuanchor="4thpage" class="menu_object"><a href="#4thpage"><i class="wrench icon"></i></a></span>
+				
+	<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>
+	
+	<span data-menuanchor="secondPage" class="menu_object" ><a href="#secondPage"><i class="search icon"></i></a></span>
+	
+	<% if current_user.nil? == true %>
+		<span data-menuanchor="" class="menu_object" id="login_popup">
+			<a><i class="lock icon"></i></a>
+		</span>
+	<%else current_user.nil? == false %>
+    <%if Fjob.exists?(current_user.id)==false%>
+	    <span data-menuanchor="" class="menu_object" id="user_popup">
+	    	<a href ="/fjob/new"><i class="user icon"></i></a>
+	    </span>
+    <%else%>
+    <span data-menuanchor="" class="menu_object">
+      <a href="/fjob/show/<%=current_user.id%>"><i class="game icon"></i></a>
+      </span>
+      
+      <span data-menuanchor="" class="menu_object" id="mypage_popup">
+      <a><i class="user icon"></i></a>
+      </span>
+      
+      
+    <%end%>
+      <span data-menuanchor="" class="menu_object">
+       <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
+      </span>
+    <%end %>
+				
+</div>	
+	
+	
 <div id="fullpage">
       
 	<!--section 0-->
 	<div class="section " id="section0">
 		<div class="content">
-			
+						
 			<div class="section_title">
 				<div class="section0_title">
-					<h1>김서방 찾기</h1>
+					<h1>나만의 김서방을 찾아보세요.</h1>
 				</div>
 			</div>
-			
+
 			<div class="section_content">
-				<div class="section0_content_search">
-					<div class="ui basic segment">
-						<div class="ui fluid massive icon input">
-							<form action="/fjob/search_result" method="post">
-							<input type="text" placeholder="내가 아는 김서방" name="search_want">
-							<input type="submit"><i class="search icon"></i></input>
-							</form>
-						</div>
+				<div class="sectino0_content">
+					<div class="section0_content_search">
+						<form class="ui fluid big icon input" action="/fjob/search_result" method="post">
+							<input class="section0_content_search_submit" type="submit" value="FIND"></input>
+							<input class="section0_content_search_box" type="text" placeholder="내가 아는 김서방" name="search_want">
+							<i class="search icon"></i>
+						</form>
+					</div>
+				
+					<div class="section0_content_linker">
+						<span><a data-menuanchor="secondPage" href="#secondPage">자세히 찾으러 가기</a></span>
+						<span><a data-menuanchor="3rdPage" href="#3rdPage">오늘의 김서방</a></span>
 					</div>
 				</div>
+			</div>
+
 			
 				<!--<div class="section0_content_linker">-->
 				<!--	<div class="ui basic segmnet">-->
@@ -67,7 +115,7 @@
 				<!--	</div>-->
 				<!--</div>-->
 				
-			</div>
+			
 		</div>
 	</div>
     
@@ -84,12 +132,12 @@
 			
 			<div class="section_content">
 				<div class="section1_content">
-					<div class="ui very padded left aligned segment">
+					<div class="ui padded left aligned segment">
 
 						<form class="ui form" action="/fjob/search_result" method="post">
 							
 							<div>
-								<h4 class="ui left aligned header">CATEGORY</h4>
+								<h4 class="ui header">CATEGORY</h4>
 							</div>
 							<div class="inline field">
 
@@ -118,7 +166,7 @@
 									</div>
 
 							<div>
-								<h4 class="ui left aligned header">DAY</h4>
+								<h4 class="ui header">DAY</h4>
 							</div>
 							<div class="inline field">						
 									<div class="choose_content checkboxes">
@@ -143,7 +191,7 @@
 									</div>
 
 							<div>
-								<h4 class="ui left aligned header">CONTRACT</h4>
+								<h4 class="ui header">CONTRACT</h4>
 							</div>
 							<div class="inline field">
 
@@ -155,17 +203,17 @@
 									</div>
 
 							<div>
-								<h4 class="ui left aligned header">TIME</h4>
+								<h4 class="ui header">TIME</h4>
 							</div>
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12" id = "start_time">
+											<input type="number" min="0" max="24" placeholder="12" id = "start_time" >
 											<label>시 부터</label>
 										</div>
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12" id = "end_time">
+											<input type="number" min="0" max="24" placeholder="12" id = "end_time" >
 											<label>시 까지</label>
 										</div>
 										
@@ -177,24 +225,24 @@
 									</div>
 							
 							<div>
-								<h4 class="ui left aligned header">LOCATION</h4>
+								<h4 class="ui header">LOCATION</h4>
 							</div>
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="text" id="city" placeholder="서울" onchange="checkFilled();">
+											<input type="text" id="city" placeholder="서울" onchange="checkFilled();" >
 											<label>시</label>
 										</div>
 
 										<div class="ui transparent input">
-											<input type="text" id = "gu" placeholder="노원">
+											<input type="text" id = "gu" placeholder="노원" >
 											<label>구</label>
 										</div>
 
 									</div>
 
 							<div>
-								<h4 class="ui left aligned header">WORK AT</h4>
+								<h4 class="ui header">WORK AT</h4>
 							</div>
 							<div class="inline field">
 
@@ -209,8 +257,8 @@
 										</div>
 									</div>
 
-							<div class="twenty wide field">
-								<input type="submit" value="FIND">FIND KIM</input>
+							<div>
+								<input class="fluid ui button" type="submit" value="FIND" id = "search_second"></input>
 							</div>
 
 						</form>
@@ -229,6 +277,7 @@
 			<div class="section_title">
 				<div class="section2_title">
 					<h1>RECOMMEND</h1>
+					
 				</div>
 			</div>
 				
@@ -308,6 +357,34 @@
 	</div>
     
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script>
+
+$("#search_second").click(function() {
+    if ($("input:checkbox[id='create']").is(:checked) == false
+    && $("input:checkbox[id='edit']").is(:checked) == false
+    && $("input:checkbox[id='write']").is(:checked) == false
+    && $("input:checkbox[id='design']").is(:checked) == false
+    && $("input:checkbox[id='photo']").is(:checked) == false
+    && $("input:checkbox[id='market']").is(:checked) == false
+    && $("input:checkbox[id='etc']").is(:checked) == false) {
+    	document.getElementById("create").value = 'create';
+    	document.getElementById("edit").value = 'edit';
+    	document.getElementById("write").value = 'write';
+    	document.getElementById("design").value = 'design';
+    	document.getElementById("photo").value = 'photo';
+    	document.getElementById("market").value = 'market';
+    	document.getElementById("etc").value = 'etc';
+
+    }
+  
+});
+
+
+
+</script>
 
 </body>
 

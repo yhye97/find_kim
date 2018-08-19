@@ -1,48 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	
 <head>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-
+	
+	<style>
+		
+		
+	</style>
+	
+	
 </head>
 
 <body>
 
-<!--navbar-->
-<div id="fp-nav" class="right">
-	<span data-menuanchor="firstPage" class="menu_object"><a href="#firstPage"><i class="home icon"></i></a></span>	
-				
-
-	<!--
-	<span data-menuanchor="4thpage" class="menu_object"><a href="#4thpage"><i class="wrench icon"></i></a></span>
-				
-	<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>
-	-->
-
-	
-	<span data-menuanchor="secondPage" class="menu_object" ><a href="#secondPage"><i class="search icon"></i></a></span>
-	
-	<% if current_user.nil? == true %>
-		<span data-menuanchor="" class="menu_object" id="login_popup">
-			<a><i class="lock icon"></i></a>
-		</span>
-	<%else current_user.nil? == false %>
-    <%if Fjob.exists?(current_user.id)==false%>
-	    <span data-menuanchor="" class="menu_object" id="user_popup">
-	    	<a href ="/fjob/new"><i class="user icon"></i></a>
-	    </span>
-    <%else%>
-      <a href="/fjob/show/<%=current_user.id%>"><i class="user icon"></i></a>
-    <%end%>
-      <span data-menuanchor="" class="menu_object">
-       <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
-      </span>
-    <%end %>
-				
-</div>
-	
 <!--navbar popup-->
 <div class="ui first couple login mini modal">
   
@@ -52,28 +22,23 @@
   	
 		<div class="ui center aligned huge header">로그인</div>
 			<%= render "devise/sessions/new" %>
+		</div>
 		
-		  <div class="actions">
-    <div class="ui black deny button">
-      Nope
-    </div>
-		</div>
-		</div>
-
+		<div class="ui button">회원가입</div>
+</div>
 	
 	
-	<div class="ui second couple signup mini modal">
+<div class="ui second couple signup mini modal">
   
 	<i class="close icon"></i>
    
 	<div class="ui basic segment">
-  	
 		<div class="ui center aligned huge header">회원가입</div>
-			<%= render "devise/registrations/new" %>
+			
 		</div>
-	</div>
-
-
+</div>
+	
+	
 <div class="ui category tiny modal">
   <i class="close icon"></i>
   <div class="image content">
@@ -94,7 +59,49 @@
   </div>
 </div>
 
+
+
+
+<div class="ui longer modal">
+
+<div class="header">Hi, I'm Kate Woodman</div>
+	
+  <div class="scrolling content">
+				<img class="ui Huge centered rounded image" src = "assets/nan.jpg">
+        <p>Web Designer &amp; Developer</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, magnam aut animi, excepturi voluptatum placeat dolor accusantium atque iure! Animi architecto eveniet voluptatum illo ut maiores sed, autem pariatur culpa?</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+        
+        </div>
+        
+</div>
+
+
+
+
+
+
 <%= yield %>
+
 
 <!--jQuery CDN-->
 <script
@@ -129,13 +136,18 @@
   .modal({
     allowMultiple: false
   });
-  
+  //sign-up popup
   $('.second.modal')
   .modal('attach events', '.first.modal .button')
-  
+  //log-in popup
 	$("#login_popup").click(function(){
  	$(".ui.first.mini.login.modal").modal('show');});
 	
+	$("#mypage_popup").click(function(){
+    $('.ui.longer.modal')
+        .modal('show')
+    ;
+});
 	
 	
 	//login error_semantic-UI
@@ -218,6 +230,8 @@
         });
     }
 	});
+	
+
 	
 </script>
 

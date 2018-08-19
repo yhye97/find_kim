@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions'}
     root 'fjob#homepage'
-    get '/fjob/homepage'
+    get '/fjob/homepage' => 'fjob/homepage'
     get '/fjob/create' => 'fjob#create'
     get '/review/create_review'=> 'review#create_review'
     get '/users/sign_up'=> '/fjob/homepage'

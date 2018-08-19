@@ -14,7 +14,7 @@
 
 
 <div id="fp-nav" class="right">
-	<span data-menuanchor="firstPage" class="menu_object"><a href="#firstPage"><i class="home icon"></i></a></span>	
+	<span data-menuanchor="firstPage" class="menu_object"><a href="/"><i class="home icon"></i></a></span>	
 				
 
 	<!--
@@ -24,7 +24,7 @@
 	-->
 
 	
-	<span data-menuanchor="secondPage" class="ui menu_object" ><a href = "javascript:;" id="search_button"><i class="search icon"></i></a></span>
+	<span class="ui menu_object" ><a href = "javascript:;" id="search_button"><i class="search icon"></i></a></span>
 	
 	<% if current_user.nil? == true %>
 		<span data-menuanchor="" class="menu_object" id="login_popup">
@@ -36,7 +36,9 @@
 	    	<a href ="/fjob/new"><i class="user icon"></i></a>
 	    </span>
     <%else%>
+    <span data-menuanchor="" class="menu_object">
       <a href="/fjob/show/<%=current_user.id%>"><i class="user icon"></i></a>
+      </span>
     <%end%>
       <span data-menuanchor="" class="menu_object">
        <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
@@ -60,13 +62,15 @@
 
 
 <div class="ui container">
+	
+	<h1>검색결과.</h1>
 
 <div id="js-load" class="ui six doubling cards">
 
 
 
 
-<%if @check_data.count() == 0%>
+<%if @search_data.count() != 0%>
     <%if @search_data.count() == 0%>
         검색결과 없음
     <%else%>
@@ -148,7 +152,7 @@
     <% end %>
 <%end%>
 
-<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">더보기</a> </div>
+<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">LOAD MORE</a> </div>
 </div>
 
 
@@ -156,9 +160,12 @@
 
 <div class="ui top very wide sidebar vertical menu">
 
-<button class="ui inverted green button" id="greenbutton">greenbutton</button>
+
 
 <div class="content">
+			
+			<button class="ui inverted green button" id="greenbutton">greenbutton</button>
+			
 			
 			<div class="section_title">
 				<div class="section1_title">
@@ -232,7 +239,7 @@
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12" id = "contract">
+											<input type="number" min="0" max="24" placeholder="12" id = "contract" value="" value="">
 											<label>개월</label>
 										</div>
 
@@ -244,7 +251,7 @@
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="number" min="0" max="24" placeholder="12" id = "start_time">
+											<input type="number" min="0" max="24" placeholder="12" id = "start_time" >
 											<label>시 부터</label>
 										</div>
 
@@ -254,7 +261,7 @@
 										</div>
 										
 										<div class="ui transparent input">
-											<input type="number" min="0" max="12" placeholder="12" id = "end_time">
+											<input type="number" min="0" max="12" placeholder="12" id = "working_time">
 											<label>TOTAL TIME</label>
 										</div>
 
@@ -266,12 +273,12 @@
 							<div class="inline field">
 
 										<div class="ui transparent input">
-											<input type="text" id="city" placeholder="서울" onchange="checkFilled();">
+											<input type="text" id="city" placeholder="서울" onchange="checkFilled();" >
 											<label>시</label>
 										</div>
 
 										<div class="ui transparent input">
-											<input type="text" id = "gu" placeholder="노원">
+											<input type="text" id = "gu" placeholder="노원" >
 											<label>구</label>
 										</div>
 
@@ -313,7 +320,7 @@
     crossorigin="anonymous">
   </script>
 <script src="/assets/myjs.js"></script>
-<script src="/assets/rating.js"></script>
+
 <script src="/assets/semantic1.min.js"></script>
 
 
