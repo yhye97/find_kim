@@ -7,7 +7,7 @@ class ReviewController < ApplicationController
      new_review.total_rater_num=0
      new_review.review_text=""
      new_review.save
-      redirect_to'/fjob/show/:current_user.id'
+      redirect_to'/fjob/homepage'
     end
     
     def edit

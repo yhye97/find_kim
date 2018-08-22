@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions'}
+    devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
+    
+    devise_scope :user do 
+      get 'registrations' => 'devise/registrations#create'
+      get 'sign_in' => 'devise/sesssions#new'
+      get 'edit' => 'devise/registrations#edit'
+      delete 'users/sign_out' => 'devise/sesssions#destroy'
+    end
+    
     root 'fjob#homepage'
     get '/fjob/homepage' => 'fjob/homepage'
     get '/fjob/create' => 'fjob#create'
     get '/review/create_review'=> 'review#create_review'
-    get '/users/sign_up'=> '/fjob/homepage'
+    get '/users/sign_up'=> '/fjob/default_fjob'
+    get '/fjob/default_fjob' => 'fjob#default_fjob'
     get '/users/sign_out'
-    get '/users/edit' => '/fjob/show/:id'
+  # get '/users/edit' => '/fjob/show/:id'
     get '/fjob/new'
     get '/fjob/show/:id'=> 'fjob#show'
     get '/fjob/edit/:id'=> 'fjob#edit'

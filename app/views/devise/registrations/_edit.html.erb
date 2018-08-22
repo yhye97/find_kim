@@ -1,10 +1,8 @@
-<h2>Change your password</h2>
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'ui small form'}) do |f| %>
   <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
 
-  
 <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -32,6 +30,10 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
@@ -51,10 +53,13 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
-  
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit "Update" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

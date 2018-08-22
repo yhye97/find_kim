@@ -1,7 +1,7 @@
 class FjobController < ApplicationController
-
+    
     def create
-            fjob= Fjob.new
+            fjob= Fjob.find(current_user.id)
             fjob.name=current_user.name
             fjob.nickname=current_user.nickname
             fjob.portfolio_img=params[:fjob_portfolio_img]
@@ -15,7 +15,7 @@ class FjobController < ApplicationController
             fjob.home_environment=params[:fjob_home_environment]
             fjob.location=params[:fjob_location]
             fjob.save
-           redirect_to '/review/create_review'
+          redirect_to :action => "show", :id => current_user.id
     end
 
     def show
@@ -26,9 +26,11 @@ class FjobController < ApplicationController
        
     end
     
-    def homepage
-        @recommend=Review.all
-    end
+    #  def homepage
+    #      @fjob=Fjob.find(current_user.id)  #완식이 추가함 
+    #      @recommend=Review.all
+    #      @r_cateogry=Fjob.all
+    #  end
 
     def new
             
@@ -57,32 +59,38 @@ class FjobController < ApplicationController
         update_fjob.home_environment=params[:fjob_home_environment]
         update_fjob.location=params[:fjob_location]
         update_fjob.save
-        redirect_to'/fjob/show/:current_user.id'
+        redirect_to :action => "show", :id => current_user.id
     end
     
     def search_result
         @search_data = Fjob.where('nickname = ? OR category = ? OR location = ? OR career = ?', params[:search_want], params[:search_want], params[:search_want], params[:search_want])
         @c_user=Fjob.find(current_user.id)
-        if params[:contract].blank? == true
-            params[:contract] =params[:fjob_contract]
+        contract = params[:contract]
+        start_time = params[:start_time]
+        end_time = params[:end_time]
+        city = params[:city]
+        gu = params[:gu]
+        working_time = params[:working_time]
+        if contract.nil? == true
+            contract= Fjob.all
         end
-        if params[:start_time].blank? == true
-            params[:start_time] =params[:fjob_starttime]
+        if start_time.nil? == true
+            start_time = Fjob.all
         end
-        if params[:end_time].blank? == true
-            params[:end_time] =params[:fjob_endtime]
+        if end_time.nil? == true
+            end_time = Fjob.all
         end
         
-        if params[:city].blank? == true
-            params[:city] =params[:fjob_location]
+        if city.nil? == true
+            city = Fjob.all
         end
-        if params[:gu].blank? == true
-            params[:gu] =params[:fjob_location]
+        if gu.nil? == true
+            gu = Fjob.all
         end
-        if params[:working_time].blank? == true
-            params[:working_time] =params[:fjob_timetotal]
+        if working_time.nil? == true
+            working_time = Fjob.all
         end
-        @check_data = Fjob.where('contract = ?', params[:contract]).where('starttime = ?', params[:start_time]).where('endtime = ?', params[:end_time]).where('timetotal = ?', params[:totaltime]).where('location = ? OR location = ?', params[:city], params[:gu])
+        @check_data = Fjob.where('contract = ?', contract).where('starttime = ?', start_time).where('endtime = ?', end_time).where('timetotal = ?', working_time).where('location = ? OR location = ?', city, gu)
     end
     
     def profile

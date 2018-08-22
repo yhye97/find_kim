@@ -12,10 +12,11 @@
     <input type="checkbox" name="fjob_category" value ="creator"> Creator
     <input type="checkbox" name="fjob_category" value ="editor"> Editor
     <input type="checkbox" name="fjob_category" value ="designer"> designer
-    <input type="checkbox" name="fjob_category" value ="producer"> producer
+    <input type="checkbox" name="fjob_category" value ="photograhper"> producer
     <input type="checkbox" name="fjob_category" value ="translator"> translator
-    <input type="checkbox" name="fjob_category" value ="assistant"> assistant
-    <input type="checkbox" name="fjob_category" value ="writer"> writer<br>
+    <input type="checkbox" name="fjob_category" value ="marketer"> assistant
+    <input type="checkbox" name="fjob_category" value ="writer"> writer
+    <input type="checkbox" name="fjob_category" value ="etc"> etc<br>
     
     <!--경력 -->
     career: <br>
@@ -53,11 +54,31 @@
      <!--근무환경-->
       <!--재택근무여부-->
       home_environment: <br>
-    <input type="radio" name="fjob_home_environment" value="1" > 재택근무<br>
-    <input type="radio" name="fjob_home_environment" value="2" >출근<br>
+    <input type="checkbox" name="fjob_home_environment" value="1" > 재택근무<br>
+    <input type="checkbox" name="fjob_home_environment" value="2" >출근<br>
     <input type="text" name="fjob_location"> 지역 / OO시 OO군<br>
   <button type="submit" class="btn btn-primary">제출</button>
 </form>
 
 
+<?php
+
+  $aDoor = $_POST['formDoor'];
+
+  if(empty($aDoor))
+  {
+    echo("You didn't select any buildings.");
+  }
+
+  else
+  {
+    $N = count($aDoor);
+    echo("You selected $N door(s): ");
+
+    for($i=0; $i < $N; $i++)
+    {
+      echo($aDoor[$i] . " ");
+    }
+  }
+?>
 

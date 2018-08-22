@@ -2,97 +2,153 @@
 <html>
 	
 <head>
-	
-	<style>
-		
-		
-	</style>
-	
-	
 </head>
 
 <body>
 
 <!--navbar popup-->
-<div class="ui first couple login mini modal">
-  
+
+<!--sign in popup-->
+<div class="ui login mini modal">
+  <i class="close icon"></i>
+  <%= render "devise/sessions/new" %>
+</div>
+
+<!--sign up popup-->	
+<div class="ui signup mini modal">
 	<i class="close icon"></i>
-   
-	<div class="ui basic segment">
-  	
-		<div class="ui center aligned huge header">로그인</div>
-			<%= render "devise/sessions/new" %>
+	<%= render "devise/registrations/new" %>
+</div>
+
+
+
+
+
+
+<div class="ui large longer modal">
+
+	<div class="header">
+		<% if current_user.nil? == true %>
+	        Hello, KIM
+		<% else current_user.nil? == false %>
+	        Hi, I'm <%= current_user.nickname %>
+		<% end %>
+	</div>
+	
+ 	<div class="ui basic segment">
+		<div class="ui left floated basic segment">
+			<img class="ui medium rounded image" src="../assets/nan.jpg">
+		</div>
+	
+  
+  	<div class="ui right floated basic segment">	
+	
+			<div class="ui mini top attached tabular menu">
+  			<a class="item active" data-tab="first">User Information</a>
+				<a class="item" data-tab="second">Job Information</a>
+				<a class="item" data-tab="third">Partnership</a>
+			</div>
+				
+			<div class="ui bottom attached tab segment" data-tab="first">
+				<div class="scrolling content">
+					<%= render "devise/registrations/edit" %>
+			</div>
+		</div>
+
+		<div class="ui bottom attached tab segment" data-tab="second">
+			<div class="scrolling content">
+  				first
+	  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, magnam aut animi, excepturi voluptatum placeat dolor accusantium atque iure! Animi architecto eveniet voluptatum illo ut maiores sed, autem pariatur culpa?</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+			</div>
 		</div>
 		
-		<div class="ui button">회원가입</div>
-</div>
-	
-	
-<div class="ui second couple signup mini modal">
-  
-	<i class="close icon"></i>
-   
-	<div class="ui basic segment">
-		<div class="ui center aligned huge header">회원가입</div>
-			
+			<div class="ui bottom attached tab segment" data-tab="third">
+				<div class="scrolling content">
+  				first
+	  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, magnam aut animi, excepturi voluptatum placeat dolor accusantium atque iure! Animi architecto eveniet voluptatum illo ut maiores sed, autem pariatur culpa?</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+	        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+			</div>
 		</div>
-</div>
-	
-	
-<div class="ui category tiny modal">
-  <i class="close icon"></i>
-  <div class="image content">
-
-    <div class="description">
-      <div class="ui header">카테고리</div>
-    </div>
-  </div>
-	
-  <div class="actions">
-    <div class="ui black deny button">
-      Nope
-    </div>
-    <div class="ui positive right labeled icon button">
-      Yep, that's me
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
+			
 </div>
 
 
 
 
-<div class="ui longer modal">
+      <div class="ui medium image">
+        <i mg src="/assets/nan.jpg">
+      </div>
 
-<div class="header">Hi, I'm Kate Woodman</div>
-	
-  <div class="scrolling content">
-				<img class="ui Huge centered rounded image" src = "assets/nan.jpg">
-        <p>Web Designer &amp; Developer</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, magnam aut animi, excepturi voluptatum placeat dolor accusantium atque iure! Animi architecto eveniet voluptatum illo ut maiores sed, autem pariatur culpa?</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
-        <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p>
+      <%if false%> <!--여기서부터 주석 시작-->
+     
+      <%if current_user.profile_img==""%>
+            <img class="ui Huge centered rounded image" src="assets/nan.jpg">
+      <%else%>
+            <img src="<%= current_user.profile_img %>" class="ui Huge centered rounded image">
+      <%end%>
+     
+				
+        
+        <h3>카테고리</h3>
+        <p><%= @fjob.category%></p>
+        <h3>계약기간</h3>
+        <p><%= @fjob.contract%></p><p>달</p>
+        <h3>일</h3>
+        <p><%= @fjob.date%></p><p>일</p>
+        <h3>시간</h3>
+        <p><%= @fjob.starttime%> ~ <%=@fjob.endtime%>  == Total <%=@fjob.timetotal%></p><p>시간</p>
+        <h3>작업환경</h3>
+            <div>
+                <%if @fjob.home_environment==true%>
+                    <p>재택근무</p>
+                <%else%>
+                    <p>출근</p><p>지역 : <%=@fjob.location%></p>
+                <%end%>
+            </div>
+        
+        <%end%> <!-- 여기까지 주석 끝-->
         
         </div>
-        
+        </div>
 </div>
 
 
@@ -132,22 +188,27 @@
 	$("#category_popup").click(function(){
   	$(".ui.tiny.category.modal").modal('show');});
 	
-	$('.coupled.modal')
-  .modal({
-    allowMultiple: false
-  });
-  //sign-up popup
-  $('.second.modal')
-  .modal('attach events', '.first.modal .button')
-  //log-in popup
+
+ 
+    //sign-in popup
 	$("#login_popup").click(function(){
- 	$(".ui.first.mini.login.modal").modal('show');});
+ 	$(".ui.mini.login.modal").modal('show');});
+ 	
+ 	//sign-up popup
+	$("#signup_popup").click(function(){
+ 	$(".ui.mini.signup.modal").modal('show');});
 	
+	//maypage popup
 	$("#mypage_popup").click(function(){
     $('.ui.longer.modal')
         .modal('show')
     ;
-});
+	});
+	
+	$('.menu .item')
+  .tab()
+	;
+
 	
 	
 	//login error_semantic-UI

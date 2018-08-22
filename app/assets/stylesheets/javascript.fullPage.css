@@ -12,7 +12,23 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
 
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
-		
+
+@font-face { 
+  font-family: 'Arita-buri-SemiBold'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') 
+  format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}	
+
+@font-face { 
+  font-family: 'Arita-dotum-Medium'; 
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') 
+  format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}
+
 		
 /* Reset CSS
  * --------------------------------------- */
@@ -20,6 +36,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
 form,fieldset,input,textarea,p,blockquote,th,td {
 	padding: 0;
 	margin: 0;
+	font-style: normal;
 }
 a {
 	text-decoration:none;
@@ -63,7 +80,7 @@ abbr,acronym {
 /* Custom CSS
  * --------------------------------------- */
 body{
-	font-family: arial,helvetica;
+	/*font-family: arial,helvetica;*/
 	color: #F2F2F2;
 }
 /*
@@ -79,11 +96,9 @@ p{
 .content {
 	position: relative;
 	/*top: 50%;*/
-	top: -1%;
+	/*top: -1%;*/
 	text-align: center;
 }
-
-
 html.fp-enabled,
 .fp-enabled body {
     margin: 0;
@@ -307,24 +322,40 @@ html.fp-enabled,
   width: 100%;
 }
 
+
 /* section 0 
  * --------------------------------------- */
 #section0{
 	background-color: #BFDA00;
-	font-family: 'Jeju Myeongjo';
 }
 .section0_title {
+  font-family: 'Arita-buri-SemiBold';
   display: block;
   margin: 0 30%;
 }
 .section0_title h1 {
+  font-size: 3.1rem;
   color: black;
   word-break: keep-all;
   text-align: left;
 }
 .section0_content_search {
   margin: 0 30%;
+  margin-top: 1vh;
 }
+
+@media screen and (max-width:470px) {
+		.section0_content_search {
+			margin: 0 20%;
+			/*margin-top: 1vh;*/
+		}
+		.section0_title {
+      margin: 0 20%;
+		}
+		.section0_title h1 {
+      font-size: 1.9rem;
+    }
+}	
 /*.section0_content_search span {*/
 /*	display: inline;*/
 /*	cursor: pointer;*/
@@ -351,11 +382,13 @@ html.fp-enabled,
 	display: none;
 }
 .section0_content_linker {
-  margin: 5px 20%;
+  font-family: 'Arita-dotum-Medium';
+  /*margin: 5px 20%;*/
+  margin: 12px 0;
+  font-size: 0.9rem;
 }
 .section0_content_linker a{
-  font-size: 12px;
-  margin: 0 5px;
+  margin: 0 20px;
 }
 
 
@@ -370,12 +403,18 @@ html.fp-enabled,
 #section1 p{
 	opacity: 0.8;
 }
+#content1 {
+  top: 12%
+}
 .section1_title {
-	margin: 0 50px;
+	margin: 0 20%;
+	text-align: left;
+}
+.section1_title h1{
+
 }
 .section1_content {
-	margin: 0 50px;
-	width: 60%;
+	margin: 0 20%;
 }
 .section1_content h4 {
   color: black;
@@ -394,7 +433,7 @@ html.fp-enabled,
 	border: 1px solid #444;
 	text-align: center;
 }
-input[type=checkbox]:checked + label {
+.checkboxes input[type=checkbox]:checked + label {
 	color: #fff;
 	background: black;
 	border: 1px solid black;
@@ -415,6 +454,38 @@ input[type=checkbox]:checked + label {
 input[type=number] ::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 }
+.numberboxes label {
+  font-size: 12px;
+  color: #444;
+}
+.textboxes label {
+  font-size: 12px;
+  color: #444;
+}
+
+
+
+@media screen and (max-width:470px) {
+    #content1 {
+      top: 9%
+    }
+    .section1_title {
+	    margin: 0 10%;
+    }
+    .section1_title h1 {
+      font-size: 1.9rem;
+    }
+    .section1_content {
+      margin: 0 10%;
+    }
+    .checkboxes label {
+	    font-size: 9px;
+    }
+    .section1_content input[type=checkbox]:checked + label {
+      font-size: 9px;
+    }
+}	
+
 
 
 /* section 2
@@ -422,11 +493,17 @@ input[type=number] ::-webkit-outer-spin-button, input[type=number]::-webkit-inne
 #section2{
 	background-color: #2C3E50;
 }
+#content2 {
+  top: 3vh;
+}
 #section2 h1{
 	color: #F2F2F2;
 }
 #section2 p{
 	opacity: 0.6;
+}
+#section_title2 {
+  height: 7vh;
 }
 .section2_title {
 	text-align: left;
@@ -434,7 +511,7 @@ input[type=number] ::-webkit-outer-spin-button, input[type=number]::-webkit-inne
 }
 .section2_content {
 	position: relative;
-	bottom: -26px;
+
 }
 
 

@@ -39,7 +39,7 @@
 	
 	<span data-menuanchor="4thpage" class="menu_object"><a href="#4thpage"><i class="wrench icon"></i></a></span>
 				
-	<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>
+	<!--<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>-->
 	
 	<span data-menuanchor="secondPage" class="menu_object" ><a href="#secondPage"><i class="search icon"></i></a></span>
 	
@@ -50,7 +50,7 @@
 	<%else current_user.nil? == false %>
     <%if Fjob.exists?(current_user.id)==false%>
 	    <span data-menuanchor="" class="menu_object" id="user_popup">
-	    	<a href ="/fjob/new"><i class="user icon"></i></a>
+	    	<a href ="/fjob/new"><i class="pencil alternate icon"></i></a>
 	    </span>
     <%else%>
     <span data-menuanchor="" class="menu_object">
@@ -64,18 +64,18 @@
       
     <%end%>
       <span data-menuanchor="" class="menu_object">
-       <a data-method="DELETE" href ="/users/sign_out"><i class="lock open icon"></i></a>
+      <a data-method="DELETE" href ="/users/sign_out" > <i class="lock open icon"></i></a>
       </span>
     <%end %>
 				
 </div>	
-	
-	
+
+
 <div id="fullpage">
       
 	<!--section 0-->
 	<div class="section " id="section0">
-		<div class="content">
+		<div class="content" id="content0">
 						
 			<div class="section_title">
 				<div class="section0_title">
@@ -84,7 +84,7 @@
 			</div>
 
 			<div class="section_content">
-				<div class="sectino0_content">
+				<div class="section0_content">
 					<div class="section0_content_search">
 						<form class="ui fluid big icon input" action="/fjob/search_result" method="post">
 							<input class="section0_content_search_submit" type="submit" value="FIND"></input>
@@ -94,27 +94,11 @@
 					</div>
 				
 					<div class="section0_content_linker">
-						<span><a data-menuanchor="secondPage" href="#secondPage">자세히 찾으러 가기</a></span>
+						<span><a data-menuanchor="secondPage" href="#secondPage">자세히 찾기</a></span>
 						<span><a data-menuanchor="3rdPage" href="#3rdPage">오늘의 김서방</a></span>
 					</div>
 				</div>
 			</div>
-
-			
-				<!--<div class="section0_content_linker">-->
-				<!--	<div class="ui basic segmnet">-->
-				<!--		<div class="ui very relaxed horizontal list" >-->
-				<!--			<div class="item">-->
-				<!--				<a data-menuanchor="secondPage" href="#secondPage">찾으러 가기</a>-->
-				<!--			</div>-->
-
-				<!--			<div class="item">-->
-				<!--				<a data-menuanchor="3rdPage" href="#3rdPage">오늘의 김서방</a>-->
-				<!--			</div>-->
-				<!--		</div>-->
-				<!--	</div>-->
-				<!--</div>-->
-				
 			
 		</div>
 	</div>
@@ -122,7 +106,7 @@
     
 	<!--section 1-->	
 	<div class="section" id="section1">
-		<div class="content">
+		<div class="content" id ="content1">
 			
 			<div class="section_title">
 				<div class="section1_title">
@@ -194,53 +178,63 @@
 								<h4 class="ui header">CONTRACT</h4>
 							</div>
 							<div class="inline field">
-
-										<div class="ui transparent input">
+									<div class="choose_content numberboxes">
+										<div class="ui transparent mini input">
 											<input type="number" min="0" max="24" placeholder="12" id = "contract">
 											<label>개월</label>
 										</div>
-
 									</div>
+							</div>
 
 							<div>
 								<h4 class="ui header">TIME</h4>
 							</div>
 							<div class="inline field">
-
-										<div class="ui transparent input">
+									<div class="choose_content numberboxes">
+										<div class="ui transparent mini input">
 											<input type="number" min="0" max="24" placeholder="12" id = "start_time" >
 											<label>시 부터</label>
 										</div>
 
-										<div class="ui transparent input">
+										<div class="ui transparent mini input">
 											<input type="number" min="0" max="24" placeholder="12" id = "end_time" >
 											<label>시 까지</label>
 										</div>
 										
-										<div class="ui transparent input">
-											<input type="number" min="0" max="12" placeholder="12" id = "end_time">
+										<div class="ui transparent mini input">
+											<input type="number" min="0" max="12" placeholder="12" id = "working_time">
 											<label>TOTAL TIME</label>
 										</div>
-
 									</div>
+								</div>
 							
 							<div>
 								<h4 class="ui header">LOCATION</h4>
 							</div>
-							<div class="inline field">
-
-										<div class="ui transparent input">
+							<div class="inline mini field">
+								<div class="choose_content textboxes">
+									
+									    
+    <!--<div class="one wide field">-->
+    <!--  <label>CVC</label>-->
+    <!--  <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">-->
+    <!--</div>-->
+    <div class="one wide field">
+										
+											
 											<input type="text" id="city" placeholder="서울" onchange="checkFilled();" >
 											<label>시</label>
+											
 										</div>
 
-										<div class="ui transparent input">
+										<div class="ui three wide transparent mini input">
 											<input type="text" id = "gu" placeholder="노원" >
 											<label>구</label>
 										</div>
-
 									</div>
-
+								</div>
+							
+							
 							<div>
 								<h4 class="ui header">WORK AT</h4>
 							</div>
@@ -271,13 +265,36 @@
 	
 	<!--section 2-->	
 	<div class="section" id="section2">
-		<div class="content">
+		<div class="content" id = "content2">
 			
 			
-			<div class="section_title">
+			<div class="section_title" id ="section_title2">
 				<div class="section2_title">
 					<h1>RECOMMEND</h1>
-					
+				 			<%creator_arr=[]%>
+               <%editor_arr=[]%>
+               <%designer_arr=[]%>
+               <%translator_arr=[]%>
+               <%producer_arr=[]%>
+               <%writer_arr=[]%>
+               <%if @r_category.nil?%>
+               <%else%>
+              	 <%@r_category.each do |x|%>
+              	<%if x.category== "creator"%>
+              		<%creator_arr.push(x.id)%>
+              	<%elsif x.category=="editor"%>
+              			<%editor_arr.push(x.id)%>
+              	<%elsif x.category=="designer"%>
+              		<%designer_arr.push(x.id)%>
+              	<%elsif x.category=="producer"%>
+              			<%producer_arr.push(x.id)%>
+              	<%elsif x.category=="translator"%>
+              			<%translator_arr.push(x.id)%>
+              	<%elsif x.category=="writer"%>
+              			<%writer_arr.push(x.id)%>
+              	<%end%>
+              <%end%>		
+              <%end%>
 				</div>
 			</div>
 				
@@ -285,11 +302,22 @@
 			<div class="tiles">			
 				<article>
 					<span class="image">
-						<img src="assets/images/pic01.jpg" alt="" />
+						<img src="assets/nan.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Creator</a></h3>
+						<p><%if creator_arr.nil?%>
+										<p>	<%num=creator_arr.fetch(rand(0...creator_arr.length))%></p>
+											<%=r_creator=Fjob.find(num)%>
+											<%=r_creator_user=User.find(num)%>
+											<%=r_creator_review=Review.find(num)%>
+											<%=r_creator_user.name%>
+											<%=r_creator_user.nickname%>
+											<%=r_creator.category%>
+											<%=r_creator_review.ratings%>
+											<%else%>
+											none
+											<%end%></p>
 					</header>
 				</article>
 
@@ -298,8 +326,19 @@
 						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Editor</a></h3>
+						<p><%if editor_arr.nil?%>
+										<p>	<%num=editor_arr.fetch(rand(0...editor_arr.length))%></p>
+											<%=r_editor=Fjob.find(num)%>
+											<%=r_editor_user=User.find(num)%>
+											<%=r_editor_review=Review.find(num)%>
+											<%=r_editor_user.name%>
+											<%=r_editor_user.nickname%>
+											<%=r_editor.category%>
+											<%=r_editor_review.ratings%>
+											<%else%>
+											none
+											<%end%></p></p>
 					</header>
 				</article>
 				
@@ -308,8 +347,19 @@
 						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Designer</a></h3>
+						<p><%if designer_arr.nil?%>
+										<p>	<%num=designer_arr.fetch(rand(0...designer_arr.length))%></p>
+											<%=r_designer=Fjob.find(num)%>
+											<%=r_designer_user=User.find(num)%>
+											<%=r_designer_review=Review.find(num)%>
+											<%=r_designer_user.name%>
+											<%=r_designer_user.nickname%>
+											<%=r_designer.category%>
+											<%=r_designer_review.ratings%>
+											<%else%>
+											none
+											<%end%></p>
 					</header>
 				</article>
 				
@@ -318,8 +368,19 @@
 						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Producer</a></h3>
+						<p><%if producer_arr.nil?%>
+										<p>	<%num=producer_arr.fetch(rand(0...producer_arr.length))%></p>
+											<%=r_produer=Fjob.find(num)%>
+											<%=r_produer_user=User.find(num)%>
+											<%=r_produer_review=Review.find(num)%>
+											<%=r_producer_user.name%>
+											<%=r_producer_user.nickname%>
+											<%=r_producer.category%>
+											<%=r_producer_review.ratings%>
+											<%else%>
+											none
+											<%end%></p>
 					</header>
 				</article>
 				
@@ -328,8 +389,19 @@
 						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Translator</a></h3>
+						<p><%if translator_arr.nil?%>
+										<p>	<%num=translator_arr.fetch(rand(0...translator_arr.length))%></p>
+											<%=r_translator=Fjob.find(num)%>
+											<%=r_translator_user=User.find(num)%>
+											<%=r_translator_review=Review.find(num)%>
+											<%=r_translator_user.name%>
+											<%=r_translator_user.nickname%>
+											<%=r_translator.category%>
+											<%=r_translator_review.ratings%>
+											<%else%>
+											none
+											<%end%></p>
 					</header>
 				</article>
 				
@@ -338,8 +410,19 @@
 						<img src="assets/images/pic01.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="landing.html" class="link">Aliquam</a></h3>
-						<p>Ipsum dolor sit amet</p>
+						<h3><a href="landing.html" class="link">Writer</a></h3>
+						<p><%if writer_arr.nil?%>
+										<p>	<%num=writer_arr.fetch(rand(0...writer_arr.length))%></p>
+											<%=r_writer=Fjob.find(num)%>
+											<%=r_writer_user=User.find(num)%>
+											<%=r_writer_review=Review.find(num)%>
+											<%=r_writer_user.name%>
+											<%=r_writer_user.nickname%>
+											<%=r_writer.category%>
+											<%=r_writer_review.ratings%>
+											<%else%>
+											none
+											<%end%></p>
 					</header>
 				</article>
 			</div>
