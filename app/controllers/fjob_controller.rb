@@ -107,6 +107,7 @@ class FjobController < ApplicationController
         if working_time.nil? == true
             working_time = Fjob.all
         end
+        @matched = 
         @check_data = Fjob.where('contract = ?', contract).where('starttime = ?', start_time).where('endtime = ?', end_time).where('timetotal = ?', working_time).where('location = ? OR location = ?', city, gu)
     end
     

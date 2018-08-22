@@ -17,11 +17,12 @@ $(".card").click(function(){
      var div_id_number = Number(div_id);
     $.ajax({
         type: 'POST', 
-        url: url, 
-        data: data, 
-        success: success, 
-        dataType: data 
+        url: '/fjob/search_result', 
+        data: { div_id_number: $("id[")}, 
+        
     })
+
+
     
     $('.ui.large.longer.modal.individual')
         .modal('show')

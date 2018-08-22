@@ -2,13 +2,13 @@ Rails.application.routes.draw do
     devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
     
     devise_scope :user do 
-      get 'registrations' => 'devise/registrations#create'
-    #  get 'sign_in' => 'devise/sesssions#new'
-      
-      get 'users/edit/:id' => 'devise/registrations#edit'
+      get   'registrations' => 'devise/registrations#create'
+    # get   'sign_in' => 'devise/sesssions#new'
+      get '/users/edit', :to => 'devise/registrations#edit'
+      #get   'users/edit/:id' => 'devise/registrations#edit'
       patch 'users' => 'devise/registrations#update'
-      put 'users' => 'devise/registrations#update'
-      delete 'users' => 'users/registrations#destroy'
+      put   'users' => 'devise/registrations#update'
+      delete    'users' => 'users/registrations#destroy'
       
       delete 'users/sign_out' => 'devise/sesssions#destroy'
     end
@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     get '/users/sign_up'=> '/fjob/default_fjob'
     get '/fjob/default_fjob' => 'fjob#default_fjob'
     get '/users/sign_out'
-   get '/users/edit' => '/fjob/show/:id'
+    get '/users/edit' => '/fjob/show/:id'
+    get '/fjob/useredit' => '/fjob/show/:id'
     get '/fjob/new'
     get '/fjob/show/:id'=> 'fjob#show'
     get '/fjob/edit/:id'=> 'fjob#edit'

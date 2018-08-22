@@ -17,12 +17,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
+  def edit
+     update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
   #   pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
-  #   devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
+     devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
   # #   super
-  # end
+   end
 
   # PUT /resource
   # def update

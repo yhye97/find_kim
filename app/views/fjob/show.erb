@@ -1,14 +1,23 @@
+show html
+
+<!--아래껀 전체 적인 틀 부트스트랩-->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--아래꺼 잘모르겠음 바뀌는거 없음-->
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+
+<!--아래꺼 잘모르겟음 바뀌는거 없음-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!--아래껀 탭 때문에 쓰는 부트스트랩-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
@@ -78,113 +87,26 @@
             <div class="tab-pane active" id="home">
                 <hr>
               <%= link_to "change", :edit_user_registration %>
-              	
-<!--              	<table class="table">-->
-<!--    <thead>-->
-      <!--진우야 안녕 진우야 고생했어-->
-<!--      <tr> -->
-<!--        <th>Username</th>-->
-<!--        <th>Nickname</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <%= current_user.name %></td>-->
-<!--        <td><%= current_user.nickname %></td>-->
-<!--      </tr>-->
-<!--    </tbody>-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <th>Phone</th>-->
-<!--        <th>Email</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--      <tr>-->
-<!--        <td><%= current_user.tel %></td>-->
-<!--        <td><%= current_user.email %></td>-->
-<!--      </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--  <button class="btn btn-info" id="edit"><span class="glyphicon glyphicon-edit"></span> edit</button>-->
-<!--  <button class="btn btn-success" id="save"><span class="glyphicon glyphicon-save"></span> save</button>-->
-  
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>-->
-<!-- <script src="//code.jquery.com/jquery.js"></script>-->
-<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>-->
-<!--  <script>-->
-<!--    $("#edit").click(function() {-->
-<!--  $("#edit").hide();-->
-<!--  $("td").each(function() {-->
-<!--    var content = $(this).html();-->
-<!--    $(this).html("<textarea>" + content + "</textarea>");-->
-<!--  });-->
+           <a href="/fjob/useredit">chang2</a>
+            
 
-<!--  $("#save").show();-->
-<!--  $(".info").fadeIn("fast");-->
-<!--});-->
-
-<!--$("#save").click(function() {-->
-<!--  $("#save, .info").hide();-->
-<!--  $("textarea").each(function() {-->
-    var content = $(this).val(); //.replace(/\n/g,"<br>");
-<!--    $(this).html(content);-->
-<!--    $(this)-->
-<!--      .contents()-->
-<!--      .unwrap();-->
-<!--  });-->
-
-<!--  $("#edit").show();-->
-<!--});-->
-<!--  </script>-->
-  
   <table class="table">
     <tbody>
       <tr>
-        <td><te><%= current_user.name %></br>
-        <td><%= current_user.nickname %></td>
-        <%= current_user.email %></te></td>
+        <td><%= current_user.name %></br>
+        <%= current_user.nickname %></br>
+        <%= current_user.email %></br>
+        <%= current_user.tel %>
+        </td>
       </tr>
     </tbody>
 
   </table>
-  <button class="btn btn-info" id="edit4"><span class="glyphicon glyphicon-edit"></span> edit</button>
-  <button class="btn btn-success" id="save4"><span class="glyphicon glyphicon-save"></span> save</button>
-  
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
  <script src="//code.jquery.com/jquery.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
-  <script>
-    
-     $("#form_update_fjob").hide();
-    
-$("#edit4").click(function() {
-  $("#form_update_fjob").show();
-  
-  $("te").each(function() {
-    var content = $(this).html();
-    $(this).html("<textarea>" + content + "</textarea>");
-  });
-
-  $("#save4").show();
-  $(".info4").fadeIn("fast");
-});
-
-$("#save4").click(function() {
-  $("#save4, .info").hide();
-  $("textarea").each(function() {
-    var content = $(this).val(); //.replace(/\n/g,"<br>");
-    $(this).html(content);
-    $(this)
-      .contents()
-      .unwrap();
-  });
-
-  $("#edit4").show();
-});
-  </script>
-  
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>-->
+ 
               
               <hr>
               
@@ -489,6 +411,11 @@ $("#save4").click(function() {
 
 
 <script>
+
+  
+     $("#form_update_fjob").hide();
+ 
+
 $("#wansik").ready(function(){
     $('.ui.rating').rating('enable')
 
