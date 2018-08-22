@@ -4,8 +4,12 @@ Rails.application.routes.draw do
     devise_scope :user do 
       get 'registrations' => 'devise/registrations#create'
       get 'sign_in' => 'devise/sesssions#new'
-      get 'update' => 'devise/registrations#edit'
-      get 'edit' => 'devise/registrations#edit'
+      
+      get 'users/edit' => 'devise/registrations#edit'
+      patch '/users' => 'devise/registrations#edit'
+      put '/users' => 'devise/registrations#edit'
+      delete '/users' => 'users/registrations#destroy'
+      
       delete 'users/sign_out' => 'devise/sesssions#destroy'
     end
     

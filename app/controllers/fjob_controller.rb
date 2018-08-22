@@ -1,7 +1,7 @@
 class FjobController < ApplicationController
     
     def create
-            fjob= Fjob.find(current_user.id)
+            fjob=Fjob.find(current_user.id)
             fjob.name=current_user.name
             fjob.nickname=current_user.nickname
             fjob.portfolio_img=params[:fjob_portfolio_img]
@@ -26,11 +26,11 @@ class FjobController < ApplicationController
        
     end
     
-    #  def homepage
-    #      @fjob=Fjob.find(current_user.id)  #완식이 추가함 
-    #      @recommend=Review.all
-    #      @r_cateogry=Fjob.all
-    #  end
+     def homepage
+       @fjob=Fjob.find(current_user.id)  #완식이 추가함 
+        @recommend=Review.all
+         @r_category=Fjob.all
+     end
 
     def new
             

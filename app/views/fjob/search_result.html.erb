@@ -156,7 +156,8 @@
 
     <div class="ui large longer modal individual">
   <div class="header">
-  		
+  	
+  		<% searched_user=User.find(user.id)%>
   		<% if current_user.nil? == true %>
 	        Hello, KIM
 		<% else current_user.nil? == false %>

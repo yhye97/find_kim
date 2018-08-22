@@ -264,13 +264,41 @@ $("#save4").click(function() {
     
      <!--직군-->
     category:<br>
-    <input type="checkbox" name="fjob_category" value ="creator"> Creator
-    <input type="checkbox" name="fjob_category" value ="editor"> Editor
-    <input type="checkbox" name="fjob_category" value ="designer"> designer
-    <input type="checkbox" name="fjob_category" value ="producer"> producer
-    <input type="checkbox" name="fjob_category" value ="translator"> translator
-    <input type="checkbox" name="fjob_category" value ="assistant"> assistant
-    <input type="checkbox" name="fjob_category" value ="writer"> writer<br>
+    <% if @fjob.category.include? "creator" %>
+        <input type="checkbox" name="fjob_category" value ="creator" checked> Creator
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="creator" > Creator
+    <%end%>
+    <% if @fjob.category.include? "editor" %>
+        <input type="checkbox" name="fjob_category" value ="editor" checked> Editor
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="editor"> Editor
+    <%end%>
+    <% if @fjob.category.include? "designer" %>
+        <input type="checkbox" name="fjob_category" value ="designer" checked> designer
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="designer"> designer
+    <%end%>
+    <% if @fjob.category.include? "producer" %>
+        <input type="checkbox" name="fjob_category" value ="producer" checked> producer
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="producer"> producer
+    <%end%>
+    <% if @fjob.category.include? "translator" %>
+        <input type="checkbox" name="fjob_category" value ="translator" checked> translator
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="translator"> translator
+    <%end%>
+    <% if @fjob.category.include? "assistant" %>
+        <input type="checkbox" name="fjob_category" value ="assistant" checked> assistant
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="assistant"> assistant
+    <%end%>
+    <% if @fjob.category.include? "writer" %>
+        <input type="checkbox" name="fjob_category" value ="writer"  checked> writer<br>
+    <%else%>
+        <input type="checkbox" name="fjob_category" value ="writer" > writer<br>
+    <%end%>
     
     <!--경력 -->
     career: <br>
@@ -285,13 +313,41 @@ $("#save4").click(function() {
     <!--근무 시간 -->
     <!--요일-->
     date: <br>
-    <input type="checkbox" name="fjob_date" value ="monday"> 월요일
+    <% if @fjob.date.include? "monday" %>
+        <input type="checkbox" name="fjob_date" value ="monday"> 월요일
+    <%else%>
+        <input type="checkbox" name="fjob_date" value ="monday"> 월요일
+    <%end%>
+    <% if @fjob.date.include? "tuesday" %>
+    <input type="checkbox" name="fjob_date" value ="tuesday" checked> 화요일
+    <%else%>
     <input type="checkbox" name="fjob_date" value ="tuesday"> 화요일
+    <%end%>
+    <% if @fjob.date.include? "wednesday" %>
+    <input type="checkbox" name="fjob_date" value ="wednesday" checked> 수요일
+    <%else%>
     <input type="checkbox" name="fjob_date" value ="wednesday"> 수요일
+    <%end%>
+    <% if @fjob.date.include? "thursday" %>
+    <input type="checkbox" name="fjob_date" value ="thursday" checked> 목요일
+    <%else%>
     <input type="checkbox" name="fjob_date" value ="thursday"> 목요일
+    <%end%>
+    <% if @fjob.date.include? "friday" %>
+    <input type="checkbox" name="fjob_date" value ="friday" checked> 금요일
+    <%else%>
     <input type="checkbox" name="fjob_date" value ="friday"> 금요일
+    <%end%>
+    <% if @fjob.date.include? "saturday" %>
+    <input type="checkbox" name="fjob_date" value ="saturday" checked> 토요일
+    <%else%>
     <input type="checkbox" name="fjob_date" value ="saturday"> 토요일
-     <input type="checkbox" name="fjob_date" value ="sunday"> 일요일
+    <%end%>
+    <% if @fjob.date.include? "sunday" %>
+    <input type="checkbox" name="fjob_date" value ="sunday" checked> 일요일
+    <%else%>
+    <input type="checkbox" name="fjob_date" value ="sunday"> 일요일
+    <%end%>
     <br>
      <!--시간-->
     
@@ -308,9 +364,10 @@ $("#save4").click(function() {
      <!--근무환경-->
       <!--재택근무여부-->
       home_environment: <br>
-    <input type="radio" name="fjob_home_environment" value="true" > 재택근무<br>
-    <input type="radio" name="fjob_home_environment" value="false" >출근<br>
-  <button type="submit" class="btn btn-primary">제출</button>
+    <input type="checkbox" name="fjob_home_environment" value="true" > 재택근무<br>
+    <input type="checkbox" name="fjob_home_environment" value="false" >출근<br>
+    <input type="text" name="fjob_location" value= "<%=@fjob.location%>"><%=@fjob.location%> 지역 / OO시 OO군<br>
+  <button type="submit" class="btn btn-primary" >제출</button>
 </form>
                
              </div><!--/tab-pane-->
