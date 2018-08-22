@@ -12,13 +12,25 @@ $("#wansik").ready(function(){
 
 })
 
-$("").click(function(){
+$(".card").click(function(){
+     var div_id = document.getElementsByClassName("js-load card").id;
+     var div_id_number = Number(div_id);
+    $.ajax({
+        type: 'POST', 
+        url: url, 
+        data: data, 
+        success: success, 
+        dataType: data 
+    })
+    
     $('.ui.large.longer.modal.individual')
         .modal('show')
     ;
 });
 
-
+// function search_individual(id) {
+//     var div_id = id
+// }
 //$(window).on('load1', function () {
 //    load1('#load-box', '3');
 //    $("#loadmore_button .button").on("click", function() {

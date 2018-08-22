@@ -62,7 +62,12 @@
         <% @search_data.each do |user| %>
         
             <%user_r=Review.find(user.id)%>
+            
             <li class="js-load card" id ="<%=user.id%>">
+            	 <script type="text/javascript">
+            	 	
+            	 	
+            	 </script>
             	
     		<div class="image" href = "">
     		<%searched_user=User.find(user.id)%>
@@ -155,13 +160,21 @@
 </div>
 
     <div class="ui large longer modal individual">
+    	
+    	<form name="frm" action="" method ="post">
+		<input type="hidden" name="div_id_number">
+		</form>
+    	
   <div class="header">
-  	
-  		<% searched_user=User.find(user.id)%>
+		blah=&{div_id_number};
+		
+		
+		
+  		<% searched_user_individual= User.find(blah)%>
   		<% if current_user.nil? == true %>
 	        Hello, KIM
 		<% else current_user.nil? == false %>
-	        Hi, I'm <%= current_user.nickname %>
+	        Hi, I'm <%= searched_user_individual.nickname %>
 		<% end %>
   	</div>
   <div class="scrolling content">

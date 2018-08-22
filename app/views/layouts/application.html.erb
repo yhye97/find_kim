@@ -24,7 +24,10 @@
 <div class="ui longer modal">
 
 	<div class="header">
+		<%if current_user.nil?%>
+		<%else%>
 		Hi, I'm <%= current_user.nickname %>
+		
 	</div>
 	
 	<div class="scrolling image content">
@@ -45,6 +48,10 @@
 			</div>
 	
 			<div class="ui bottom attached tab segment" data-tab="second">
+				<!-- 추가정보 폼 넣으면 되는곳 -->
+				              <%= render "/fjob/show" %>
+               <h2></h2>
+               
 			</div>
 			
 			<div class="ui bottom attached tab segment" data-tab="third">
@@ -98,7 +105,7 @@
             </div>
           <%end%> <!-- 여기까지 주석 끝-->
         
-        
+        <%end%>
         </div>
   </div>
 </div>

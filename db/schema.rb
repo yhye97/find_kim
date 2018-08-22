@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180813075730) do
     t.integer  "starttime"
     t.integer  "endtime"
     t.integer  "timetotal"
-    t.integer  "home_environment"
+    t.string   "home_environment"
     t.string   "location"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

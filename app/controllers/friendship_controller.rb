@@ -13,6 +13,7 @@ class FriendshipController < ApplicationController
     
   end
 
+  
 
   def friendlist
    @friend=Friendship.all

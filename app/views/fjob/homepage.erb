@@ -46,7 +46,7 @@
 			<a><i class="lock icon"></i></a>
 		</span>
 	<%else current_user.nil? == false %>
-    <%if Fjob.exists?(current_user.id)==false%>
+    <%if Fjob.find(current_user.id).category==""%>
 	    <span data-menuanchor="" class="menu_object" id="user_popup">
 	    	<a href ="/fjob/new"><i class="pencil alternate icon"></i></a>
 	    </span>

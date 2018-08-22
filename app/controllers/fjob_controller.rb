@@ -6,13 +6,20 @@ class FjobController < ApplicationController
             fjob.nickname=current_user.nickname
             fjob.portfolio_img=params[:fjob_portfolio_img]
             fjob.career=params[:fjob_career]
-            fjob.category=params[:fjob_category]
+            blah=""
+            params[:fjob_category].each { |a| blah+=a + " "}
+           
+            fjob.category=blah
             fjob.contract=params[:fjob_contract]
-            fjob.date=params[:fjob_date]
-            fjob.starttime=params[:fjob_starttime]
+            date_m=""
+             params[:fjob_date].each { |a| date_m+=a + " "}
+            fjob.date=date_m
+            fjob.starttime=params[:fjob_starttime]      
             fjob.endtime=params[:fjob_endtime]
             fjob.timetotal=params[:fjob_timetotal]
-            fjob.home_environment=params[:fjob_home_environment]
+             home_m=""
+             params[:fjob_home_environment].each { |a| home_m+=a + " "}
+            fjob.home_environment=home_m
             fjob.location=params[:fjob_location]
             fjob.save
           redirect_to :action => "show", :id => current_user.id
@@ -22,14 +29,15 @@ class FjobController < ApplicationController
         @fjob=Fjob.find(current_user.id)
         @friend=Friendship.all
         @count=0 #요청온 파트너 counter
-        @myreview=Review.find(current_user.id)
+        
        
     end
     
      def homepage
-       @fjob=Fjob.find(current_user.id)  #완식이 추가함 
+        
         @recommend=Review.all
          @r_category=Fjob.all
+         
      end
 
     def new
@@ -48,15 +56,24 @@ class FjobController < ApplicationController
     
     def update
         update_fjob=Fjob.find(current_user.id)
+        update_fjob.name=current_user.name
+        update_fjob.nickname=current_user.nickname
         update_fjob.portfolio_img=params[:fjob_portfolio_img]
         update_fjob.career=params[:fjob_career]
-        update_fjob.category=params[:fjob_category]
+         blah=""
+            params[:fjob_category].each { |a| blah+=a + " " }
+        update_fjob.category=blah
         update_fjob.contract=params[:fjob_contract]
-        update_fjob.date=params[:fjob_date]
+         date_m=""
+             params[:fjob_date].each { |a| date_m+=a + " "}
+        update_fjob.date=date_m
         update_fjob.starttime=params[:fjob_starttime]
         update_fjob.endtime=params[:fjob_endtime]
         update_fjob.timetotal=params[:fjob_timetotal]
-        update_fjob.home_environment=params[:fjob_home_environment]
+         home_m=""
+             params[:fjob_home_environment].each { |a| home_m+=a + " "}
+        update_fjob.home_environment=home_m
+       
         update_fjob.location=params[:fjob_location]
         update_fjob.save
         redirect_to :action => "show", :id => current_user.id
