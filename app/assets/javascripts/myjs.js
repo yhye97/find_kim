@@ -12,6 +12,12 @@ $("#wansik").ready(function(){
 
 })
 
+$("").click(function(){
+    $('.ui.large.longer.modal.individual')
+        .modal('show')
+    ;
+});
+
 
 //$(window).on('load1', function () {
 //    load1('#load-box', '3');

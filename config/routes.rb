@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     devise_scope :user do 
       get 'registrations' => 'devise/registrations#create'
       get 'sign_in' => 'devise/sesssions#new'
+      get 'update' => 'devise/registrations#edit'
       get 'edit' => 'devise/registrations#edit'
       delete 'users/sign_out' => 'devise/sesssions#destroy'
     end
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
     get '/users/sign_up'=> '/fjob/default_fjob'
     get '/fjob/default_fjob' => 'fjob#default_fjob'
     get '/users/sign_out'
-  # get '/users/edit' => '/fjob/show/:id'
+   get '/users/edit' => '/fjob/show/:id'
     get '/fjob/new'
     get '/fjob/show/:id'=> 'fjob#show'
     get '/fjob/edit/:id'=> 'fjob#edit'

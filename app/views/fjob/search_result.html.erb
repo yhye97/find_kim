@@ -62,7 +62,7 @@
         <% @search_data.each do |user| %>
         
             <%user_r=Review.find(user.id)%>
-            <li class="js-load card">
+            <li class="js-load card" id ="<%=user.id%>">
             	
     		<div class="image" href = "">
     		<%searched_user=User.find(user.id)%>
@@ -70,13 +70,13 @@
             <img src="../assets/nan.jpg" class="ui Huge centered rounded image" >
       		<%else%>
       		
-            <img src="<%= searched_user.profile_img %>" class="ui Huge centered rounded image">
+            <img src="<%=searched_user.profile_img %>" class="ui Huge centered rounded image">
      	 <%end%>
-    		</div>
+    	</div> 
     		
                 
                 <div class="content">
-                    <div class="header"><%= user.name %></div>
+                    <div class="header"><a href="/fjob/profile/<%=user.id%>"><%=user.name%></a></div>
                     <div class="meta">
                         <a><%= user.category%></a>
                     </div>
@@ -104,7 +104,7 @@
                 </div>
     
             </li>
-            
+           
         <% end %>
     <% end %>
 <%else%>
@@ -153,6 +153,26 @@
 
 <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">LOAD MORE</a> </div>
 </div>
+
+    <div class="ui large longer modal individual">
+  <div class="header">
+  		
+  		<% if current_user.nil? == true %>
+	        Hello, KIM
+		<% else current_user.nil? == false %>
+	        Hi, I'm <%= current_user.nickname %>
+		<% end %>
+  	</div>
+  <div class="scrolling content">
+    <p>Very long content goes here</p>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 

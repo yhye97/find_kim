@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+#  before_action :configure_account_update_params, only: [:update]
  
   # GET /resource/sign_up
   # def new
@@ -15,9 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
+   def edit
+     update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
+    pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
+    devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
   #   super
-  # end
+   end
 
   # PUT /resource
   # def update
@@ -48,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
  
 
-  def edit
+  def configure_account_update_params
     update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
     pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
     devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
