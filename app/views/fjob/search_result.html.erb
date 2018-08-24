@@ -64,10 +64,7 @@
             <%user_r=Review.find(user.id)%>
             
             <li class="js-load card" id ="<%=user.id%>">
-            	 <script type="text/javascript">
-            	 	
-            	 	
-            	 </script>
+            	 
             	
     		<div class="image" href = "">
     		<%searched_user=User.find(user.id)%>
@@ -98,16 +95,19 @@
                         <%=user_r.ratings/user_r.total_rater_num%>
                     </span>
                     Review_text : <%=user_r.review_text%> <br>
-                    <%if user.id!=current_user.id%>
-                    <form action="/friendship/invite" method "post" >
-                    <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
-                    <input type="hidden" name="requester" value="<%=current_user.id%>">
-                    <input type= "hidden" name = "bool" value = "false">
-                    <button type="submit" class="btn btn-primary">친구요청</button>
-                    </form>
+                    <%if @c_user == 'no resert'%>
+                    	<%else%>
+		                    <%if user.id != @c_user%>
+			                    <form action="/friendship/invite" method "post" >
+			                    <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
+			                    <input type="hidden" name="requester" value="<%=@c_user%>">
+			                    <input type= "hidden" name = "bool" value = "false">
+			                    <button type="submit" class="btn btn-primary">친구요청</button>
+			                    </form>
+		                    <%end%>
                     <%end%>
                 </div>
-    
+
             </li>
            
         <% end %>
@@ -144,43 +144,36 @@
     </div>
     
     </li>
-    				<%if user.id!=current_user.id%>
-            <form action="/friendship/invite" method "post" >
-            <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
-            <input type="hidden" name="requester" value="<%=current_user.id%>">
-            <input type= "hidden" name = "bool" value = "false">
-            <button type="submit" class="btn btn-primary">친구요청</button>
-            </form>
-            <%end%>
+    			<if @c_user == 'no resert'>
+                    	<else>
+		                    <%if user.id != @c_user%>
+			                    <form action="/friendship/invite" method "post" >
+			                    <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
+			                    <input type="hidden" name="requester" value="<%=@c_user%>">
+			                    <input type= "hidden" name = "bool" value = "false">
+			                    <button type="submit" class="btn btn-primary">친구요청</button>
+			                    </form>
+		                    <%end%>
+                    <%end%>
     <% end %>
-    <% end %>
+
 <%end%>
 
-<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">LOAD MORE</a> </div>
-</div>
 
-    <div class="ui large longer modal individual">
+<!--<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button" id="loadmore_button">LOAD MORE</a> </div>-->
+<!--</div>-->
+
+<!--    <div class="ui large longer modal individual">-->
     	
-    	<form name="frm" action="" method ="post">
-		<input type="hidden" name="div_id_number">
-		</form>
+<!--    	<form name="frm" action="" method ="post">-->
+<!--		<input type="hidden" name="div_id_number">-->
+<!--		</form>-->
     	
-  <div class="header">
-	
-		
-		
-		
-  		<% searched_user_individual = User.find(div_id_number)%>
-  		<% if current_user.nil? == true %>
-	        Hello, KIM
-		<% else current_user.nil? == false %>
-	        Hi, I'm <%= searched_user_individual.nickname %>
-		<% end %>
-  	</div>
-  <div class="scrolling content">
-    <p>Very long content goes here</p>
-  </div>
-</div>
+
+<!--  <div class="scrolling content">-->
+<!--    <p>Very long content goes here</p>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 

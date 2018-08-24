@@ -34,10 +34,23 @@ class FjobController < ApplicationController
     end
     
      def homepage
-        
         @recommend=Review.all
-         @r_category=Fjob.all
-         
+        @r_category=Fjob.all
+        def ratings_calculate(subjectid)
+            r_review=Review.all
+            r_review.each do |x|
+			if x.subject_id==subjectid
+				sum+=x.ratings
+				num_count=num_count+1
+			end
+			if num_count!=0
+				@rating_result= sum/num_count
+			else	
+				@rating_result= "None"
+	        end
+	        return @rating_result
+        end
+    end        
      end
 
     def new
@@ -81,7 +94,11 @@ class FjobController < ApplicationController
     
     def search_result
         @search_data = Fjob.where('nickname = ? OR category = ? OR location = ? OR career = ?', params[:search_want], params[:search_want], params[:search_want], params[:search_want])
-        @c_user=Fjob.find(current_user.id)
+        if current_user.nil? == true
+            @c_user = 'no resert'
+        else
+            @c_user=Fjob.find(current_user.id)
+        end
         contract = params[:contract]
         start_time = params[:start_time]
         end_time = params[:end_time]
@@ -89,7 +106,7 @@ class FjobController < ApplicationController
         gu = params[:gu]
         working_time = params[:working_time]
         if contract.nil? == true
-            contract= Fjob.all
+            contract= 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24
         end
         if start_time.nil? == true
             start_time = Fjob.all
@@ -107,7 +124,7 @@ class FjobController < ApplicationController
         if working_time.nil? == true
             working_time = Fjob.all
         end
-        @matched = 
+        # @match = Match.new(params[:div_id_number])
         @check_data = Fjob.where('contract = ?', contract).where('starttime = ?', start_time).where('endtime = ?', end_time).where('timetotal = ?', working_time).where('location = ? OR location = ?', city, gu)
     end
     
@@ -116,4 +133,19 @@ class FjobController < ApplicationController
          @p_user=User.find(params[:id])
     end
     
+    def ratings_calculate(subjectid)
+            r_review=Review.all
+            r_review.each do |x|
+			if x.subject_id==subjectid
+				sum+=x.ratings
+				num_count=num_count+1
+			end
+			if num_count!=0
+				@rating_result= sum/num_count
+			else	
+				@rating_result= "None"
+	        end
+        end
+      
+    end
   end

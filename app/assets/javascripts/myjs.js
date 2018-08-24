@@ -12,22 +12,18 @@ $("#wansik").ready(function(){
 
 })
 
-$(".card").click(function(){
-     var div_id = document.getElementsByClassName("js-load card").id;
-     var div_id_number = Number(div_id);
-    $.ajax({
-        type: 'POST', 
-        url: '/fjob/search_result', 
-        data: { div_id_number: $("id[")}, 
-        
-    })
-
-
-    
-    $('.ui.large.longer.modal.individual')
-        .modal('show')
-    ;
-});
+// $(".card").click(function(){
+//      var div_id = document.getElementsByClassName("js-load card").id;
+//      var div_id_number = Number(div_id);
+//     $.ajax({
+//         type: 'POST', 
+//         url: '/fjob/search_result', 
+//         data: div_id_number
+//     })
+//     $('.ui.large.longer.modal.individual')
+//         .modal('show')
+//     ;
+// });
 
 // function search_individual(id) {
 //     var div_id = id

@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
-    devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
+    devise_for :users, :controllers => { :passwords => "users/passwords", :confirmations => "users/confirmations", registrations: 'users/registrations', sessions: 'users/sessions'}
     
     devise_scope :user do 
       get   'registrations' => 'devise/registrations#create'
-    # get   'sign_in' => 'devise/sesssions#new'
-      get '/users/edit', :to => 'devise/registrations#edit'
-      #get   'users/edit/:id' => 'devise/registrations#edit'
-      patch 'users' => 'devise/registrations#update'
-      put   'users' => 'devise/registrations#update'
-      delete    'users' => 'users/registrations#destroy'
-      
+      get 'users/edit' => 'devise/registrations#edit', :as => 'user_edit'    
+      put 'users' => 'devise/registrations#update', :as => 'registration_user'            
+      #get   'sign_in' => 'devise/sesssions#new'
+      #get '/users/edit', :to => 'devise/registrations#edit'
+      # patch 'users' => 'devise/registrations#update'
+      # put   'users' => 'devise/registrations#update'
+      # delete    'users' => 'users/registrations#destroy'
       delete 'users/sign_out' => 'devise/sesssions#destroy'
     end
+    
+    # as :user do
+    #   get 'users', :to => 'devise/registrations#edit'
+    # end
+    
     
     root 'fjob#homepage'
     get '/fjob/homepage' => 'fjob#homepage'

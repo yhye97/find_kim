@@ -409,13 +409,25 @@
 										<p>	<%num=creator_arr.fetch(rand_num)%>
 											<%r_creator=Fjob.find(num)%>
 											<%r_creator_user=User.find(num)%>
-											<%r_creator_review=Review.find(num)%>
 											<%=r_creator_user.name%>
 											<%=r_creator_user.nickname%>
 											<%=r_creator.category%>
-											<%=r_creator_review.ratings%>
-											
-											<%end%></p>
+										
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>
+							<%end%></p>
 					</header>
 				</article>
 
@@ -436,8 +448,22 @@
 											<%=r_editor_user.name%>
 											<%=r_editor_user.nickname%>
 											<%=r_editor.category%>
-											<%=r_editor_review.ratings%>
-											<%end%></p></p>
+											
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>
+									<%end%></p></p>
 					</header>
 				</article>
 				
@@ -458,9 +484,21 @@
 											<%=r_designer_user.name%>
 											<%=r_designer_user.nickname%>
 											<%=r_designer.category%>
-											<%=r_designer_review.ratings%>
-											
-											<%end%></p>
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>											
+							<%end%></p>
 					</header>
 				</article>
 				
@@ -481,9 +519,23 @@
 											<%=r_producer_user.name%>
 											<%=r_producer_user.nickname%>
 											<%=r_producer.category%>
-											<%=r_producer_review.ratings%>
 											
-											<%end%></p>
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>
+											
+								<%end%></p>
 					</header>
 				</article>
 				
@@ -504,9 +556,22 @@
 											<%=r_translator_user.name%>
 											<%=r_translator_user.nickname%>
 											<%=r_translator.category%>
-											<%=r_translator_review.ratings%>
-										
-											<%end%></p>
+											
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>
+								<%end%></p>
 					</header>
 				</article>
 				
@@ -527,9 +592,23 @@
 											<%=r_writer_user.name%>
 											<%=r_writer_user.nickname%>
 											<%=r_writer.category%>
-											<%=r_writer_review.ratings%>
 											
-											<%end%></p>
+											<% @myreview=Review.all%>
+          							 <%sum=0%>
+		    									<%num_count=0%>
+											<%@myreview.each do |x|%>
+													<%if x.subject_id==current_user.id%>
+														<%sum+=x.ratings%>
+														<%num_count+=1%>
+													<%end%>
+									<%end%>
+										<%if num_count!=0%>
+												<%=sum/num_count%>점
+								    <%else%>
+										    No Review
+									  <%end%>
+											
+								<%end%></p>
 					</header>
 				</article>
 			</div>
@@ -568,19 +647,16 @@
 
 
 <script>
-
 	//fullpage javascript
 	fullpage.initialize('#fullpage', {
 		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
 		menu: '#menu',
 		css3:true
 	});
-
 	//navbar popup_semantic-UI
 	$("#category_popup").click(function(){
   	$(".ui.tiny.category.modal").modal('show');});
 	
-
   //sign-in popup
 	$("#login_popup").click(function(){
  	$(".ui.mini.login.modal").modal('show');});
@@ -600,7 +676,6 @@
 	$('.menu .item')
   .tab()
 	;
-
 	
 	
 	//login error_semantic-UI
@@ -684,8 +759,6 @@
     }
 	});
 	
-
-
 // $("#search_second").click(function() {
 //     if ($("input:checkbox[id='create']").is(:checked) == false
 //     && $("input:checkbox[id='edit']").is(:checked) == false
@@ -701,16 +774,11 @@
 //     	document.getElementById("photo").value = 'photo';
 //     	document.getElementById("market").value = 'market';
 //     	document.getElementById("etc").value = 'etc';
-
 //     }
   
 // });
-
 </script>
 
 </body>
 
 </html>
-
-
-

@@ -19,9 +19,17 @@ show html
   
   <!--아래껀 탭 때문에 쓰는 부트스트랩-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
 </head>
 
 <body>
+    
+    
+    
+    
+    
+    
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -39,12 +47,20 @@ show html
       </div></hr><br>
           <div class="panel panel-default">
             <div class="panel-heading">Rating <i class="fa fa-link fa-1x"></i></div>
-           <% @myreview=Review.find(current_user.id)%>
-            <%if @myreview.total_rater_num!=0%>
-            <div class="panel-body"><%=@myreview.ratings/@myreview.total_rater_num%>점</div>
-            <%else%>
-            <div class="panel-body">없음</div>
-            <%end%>
+           <% @myreview=Review.all%>
+           <%sum=0%>
+		    <%num_count=0%>
+				<%@myreview.each do |x|%>
+					<%if x.subject_id==current_user.id%>
+							<%sum+=x.ratings%>
+							<%num_count+=1%>
+					<%end%>
+				<%end%>
+					<%if num_count!=0%>
+						<div class="panel-body"><%=sum/num_count%>점</div>
+				    <%else%>
+					    <div class="panel-body">None </div>
+					<%end%>
           </div>
           
           
@@ -86,8 +102,8 @@ show html
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-              <%= link_to "change", :edit_user_registration %>
-           <a href="/fjob/useredit">chang2</a>
+              <%= link_to "change", :user_edit %>
+           
             
 
   <table class="table">

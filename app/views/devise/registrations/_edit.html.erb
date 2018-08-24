@@ -1,6 +1,8 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'ui form'}) do |f| %>
+Edit <%= resource_name.to_s.humanize %>
+<h1>test입니다.</h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:remote => true, :class => 'ui form'}) do |f| %>
   <%= devise_error_messages! %>
 
 

@@ -3,8 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
-
  
   # GET /resource/sign_up
   # def new
@@ -17,16 +15,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-     update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
-  #   pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
-     devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
-  # #   super
-   end
+  # def edit
+  #   update_attrs = [:current_password, :tel, :nickname, :profile_img]
+  #   #pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
+  #   devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
+  # # super
+  # end
 
   # PUT /resource
   # def update
-  #   super
+  #   resource.update_attributes(your_params)
+  #     redirect_to :back # else any where you want to redirect
+  #   # super
   # end
 
   # DELETE /resource
@@ -52,16 +52,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
  
-
   # def configure_account_update_params
   #   update_attrs = [:current_password, :name , :tel, :nickname, :profile_img]
   #   pw_change=[:current_password, :password, :password_confirmation, :name , :tel, :nickname, :profile_img]
   #   devise_parameter_sanitizer.permit(:account_update, keys: update_attrs)
   # end
-  
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)
+  # end
+
+
+  # def after_update_path_for(resource)
+  #   user_path(resource)
   # end
 
   # The path used after sign up for inactive accounts.
