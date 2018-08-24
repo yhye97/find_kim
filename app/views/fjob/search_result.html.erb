@@ -92,15 +92,15 @@
                     </span>
                     <span>
                         <i class="user icon"></i>
-                        <%=user_r.ratings/user_r.total_rater_num%>
+                        
                     </span>
                     Review_text : <%=user_r.review_text%> <br>
                     <%if @c_user == 'no resert'%>
                     	<%else%>
-		                    <%if user.id != @c_user%>
+		                    <%if user.id != @c_user.id%>
 			                    <form action="/friendship/invite" method "post" >
 			                    <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
-			                    <input type="hidden" name="requester" value="<%=@c_user%>">
+			                    <input type="hidden" name="requester" value="<%=current_user.id%>">
 			                    <input type= "hidden" name = "bool" value = "false">
 			                    <button type="submit" class="btn btn-primary">친구요청</button>
 			                    </form>
@@ -116,6 +116,7 @@
 
     <%if @check_data.count() == 0%>
         검색결과 없음
+        
     <%else%>
         <% @check_data.each do |user| %>
         <li class="js-load card">
@@ -139,20 +140,35 @@
     <span>
     <i class="user icon"></i>
     
-    <%=user_r.ratings/user_r.total_rater_num%>
+     <% @myreview=Review.all%>
+           <%sum=0%>
+		    <%num_count=0%>
+				<%@myreview.each do |x|%>
+					<%if x.subject_id==user.id%>
+							<%sum+=x.ratings%>
+							<%num_count+=1%>
+						<%end%>
+				<%end%>
+					<%if num_count!=0%>
+						<div class="panel-body"><%=sum/num_count%>점</div>
+				    <%else%>
+					    <div class="panel-body">None </div>
+					<%end%>
     </span>
     </div>
     
     </li>
     			<if @c_user == 'no resert'>
                     	<else>
-		                    <%if user.id != @c_user%>
+		                    <%if user.id != current_user.id%>
 			                    <form action="/friendship/invite" method "post" >
 			                    <input type="hidden" name="receiver" value="<%=user.id%>" ><!--받는 사람-->
-			                    <input type="hidden" name="requester" value="<%=@c_user%>">
+			                    <input type="hidden" name="requester" value="<%=current_user.id%>">
 			                    <input type= "hidden" name = "bool" value = "false">
 			                    <button type="submit" class="btn btn-primary">친구요청</button>
 			                    </form>
+			                    <%else%>
+			                    자기자신
 		                    <%end%>
                     <%end%>
     <% end %>
@@ -336,7 +352,7 @@
 			</div>
 			
 			</div>
-
+</div>
 </div>
 </form>
 </div>

@@ -1,185 +1,213 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<html>
 
 <head>
   <title>Find KIM_User</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   
   	<!-- semantic Ui -->
 	<!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">-->
-	<link rel="stylesheet" type="text/css" href="assets/semantic.css">
-	
-		
-<!--sementic UI-->			
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+	<!--<link rel="stylesheet" type="text/css" href="../../assets/semantic2.css">-->
+	<link rel="stylesheet" type="text/css" href="/assets/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/detail.css">
+  <script src="../../assets/semantic.js"></script>
+
+<script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+  </script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/assets/semantic2.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/icon.css">
+<link rel="stylesheet" type="text/css" href="/assets/style.css">
+
+
+
 
 </head>
-
-
-<hr>
-<div class="container bootstrap snippet">
-   <a href ="/fjob/homepage">Home</a>
-   <a href= "/fjob/show/<%=current_user.id%>">Back</a>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
+<body>
     
-        <head></head>
+    <div id="fp-nav" class="right">
+	<span data-menuanchor="firstPage" class="menu_object"><a href="/"><i class="home icon"></i></a></span>	
+				
 
-      <div class="text-center">
-        <img src="<%= @p_user.profile_img %>" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Profile Image</h6>
+	<!--
+	<span data-menuanchor="4thpage" class="menu_object"><a href="#4thpage"><i class="wrench icon"></i></a></span>
+				
+	<span data-menuanchor="" class="menu_object" id="category_popup"><a><i class="paperclip icon"></i></a></span>
+	-->
+
+	
+	<span class="ui menu_object" ><a href="javascript:history.back()" id="back_button"><i class="chevron left icon"></i></a></span>
+	
+	<% if current_user.nil? == true %>
+		<span data-menuanchor="" class="menu_object" id="login_popup">
+			<a><i class="lock icon"></i></a>
+		</span>
+	<%else current_user.nil? == false %>
+    <%if Fjob.exists?(current_user.id)==false%>
+	    <span data-menuanchor="" class="menu_object" id="user_popup">
+	    	<a href ="/fjob/new"><i class="user icon"></i></a>
+	    </span>
+    <%else%>
+    	<span data-menuanchor="" class="menu_object">
+      	<a href="/fjob/show/<%=current_user.id%>"><i class="user icon"></i></a>
+      </span>
+    <%end%>
+      <span data-menuanchor="" class="menu_object">
+       <a data-method="DELETE" href ="destroy_user_session_path"><i class="lock open icon"></i></a>
+      </span>
+    <%end %>
+				
+</div>
+	
+<!--navbar popup-->
+<div class="ui login mini modal">
+  
+	<i class="close icon"></i>
+   
+	<div class="ui basic segment">
+  	
+		<div class="ui center aligned huge header">로그인</div>
+			<%= render "devise/sessions/new" %>
+		</div>
+	</div>
+
+    <div class = "full_container">
+        <div class = "container" id = "header_container">
+    <div class = "header"> 안녕 나는 완숙이야</div>
+        </div>
+ <div class="container" id = "content_container">
         
-      </div></hr><br>
+        
+        
+       <div class="ui cards">
+            <div class="ui card">
+                <div class="image">
+                        <img src="../../assets/nan.jpg">
+                </div>
+                <div class="content">
+                    <div class="header">완숙</div>
+                    <div class="meta">
+                        <a>Creator</a>
+                    </div>
+                    
+                    <div class="description" id = "rating">
+                        별4개
+                    </div>
+                    
+                    <div class="description" id = "description">
+                        멋져
+                    </div>
+                    <div class="description" id = "location">
+                        활동장소
+                    </div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">
+                        Joined in 2013
+                    </span>
+                    <span>
+                        <i class="user icon"></i>
+                        75 Friends
+                    </span>
+                </div>
+           </div>
+        </div>
+        
+        <div class ="www1" >
+        <div class="ui top attached tabular menu">
+          <a class="item active" data-tab="first">First</a>
+          <a class="item" data-tab="second">Second</a>
+          <a class="item" data-tab="third">Third</a>
+        </div>
+        <div class="ui bottom attached tab segment active" data-tab="first">
+          First
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="second">
+          Second
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="third">
+        Third
+    </div>
+        </div>
+        
+</div>
+</div>
+<!--        <div class="ui container">-->
+  
+<!--  <div class="header">-->
+<!--    Profile Picture-->
+<!--  </div>-->
+  
+  
+<!--  <div class="image content">-->
+<!--    <div class="ui medium image">-->
+<!--      <div class="ui card">-->
+<!--                <div class="image">-->
+<!--                        <img src="../../assets/nan.jpg">-->
+<!--                </div>-->
+<!--                <div class="content">-->
+<!--                    <div class="header">Matt Giampietro</div>-->
+<!--                    <div class="meta">-->
+<!--                        <a>Friends</a>-->
+<!--                    </div>-->
+<!--                    <div class="description">-->
+<!--                        Matthew is an interior designer living in New York.-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="extra content">-->
+<!--                    <span class="right floated">-->
+<!--                        Joined in 2013-->
+<!--                    </span>-->
+<!--                    <span>-->
+<!--                        <i class="user icon"></i>-->
+<!--                        75 Friends-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--           </div>-->
+<!--    </div>-->
+<!--    <div class="description">-->
+<!--        <div class =" www1" >-->
+<!--            <div class="ui top attached tabular menu">-->
+<!--              <a class="item active" data-tab="first">First</a>-->
+<!--              <a class="item" data-tab="second">Second</a>-->
+<!--              <a class="item" data-tab="third">Third</a>-->
+<!--            </div>-->
+<!--            <div class="ui bottom attached tab segment active" data-tab="first">-->
+<!--              First-->
+<!--            </div>-->
+<!--            <div class="ui bottom attached tab segment" data-tab="second">-->
+<!--              Second-->
+<!--            </div>-->
+<!--            <div class="ui bottom attached tab segment" data-tab="third">-->
+<!--            Third-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  
+<!--</div>-->
+        
+        
 
-          <div class="panel panel-default">
-            <div class="panel-heading">Rating <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-          </div>
-          
-          
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-          </ul> 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
-            <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-            </div>
-          </div>
-          
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
-                <li><a data-toggle="tab" href="#messages">Career</a></li>
-              </ul>
-
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                 
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>Username</h4></label><br>
-                              <%= @p_user.name %>
-                              
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Nickname</h4></label><br>
-                            <%= @p_user.nickname %>    
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label><br>
-                              <%= @p_user.tel %>
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Email</h4></label><br>
-                             <%= @p_user.email %>
-                          </div>
-                      </div>
-                     
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                            </div>
-                      </div>
-              	
-              
-              <hr>
-              
-             </div><!--/tab-pane-->
-             <div class="tab-pane" id="messages">
-               
-               <h2></h2>
-               
-               <hr>
-                
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>Category</h4></label><br>
-                              <%= @p_job.category%>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Contract</h4></label><br>
-                              <%= @p_job.contract%> month
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Date</h4></label><br>
-                              <%=@p_job.date%>
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Time</h4></label><br>
-                              <%= @p_job.starttime%> ~ <%=@p_job.endtime%>  == Total <%=@p_job.timetotal%> hours
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Environment</h4></label><br>
-                              <%if@p_job.home_environment==true%>
-                                 재택근무
-                              <%else%>
-                                출근 <%=@p_job.location%>
-                               <%end%>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Career</h4></label><br>
-                             <%= @p_job.career%>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Portfolio Image</h4></label><br>
-                              <img height="100%" width="100%" src="<%= @p_job.portfolio_img%>"> <br>
-                          </div>
-                      </div>
-                     
-              	
-               
-             </div><!--/tab-pane-->
-               
-              </div><!--/tab-pane-->
-          </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
-    
-    
+      
+      
+      <!--sementic UI-->			
+  
+<script>
+    $('.menu .item')
+  .tab()
+;
+</script>
+      
+      
+    </body>
+</html>

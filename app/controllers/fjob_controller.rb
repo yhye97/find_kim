@@ -1,4 +1,40 @@
 class FjobController < ApplicationController
+    def user_update
+            change_user=User.find(current_user.id)
+             change_user.name=params[:u_name]
+             change_user.nickname=params[:u_nickname]
+             change_user.tel=params[:u_tel]
+             change_user.email=current_user.email
+            change_user.save
+               
+            redirect_to '/'
+    end
+    
+    def create
+            fjob=Fjob.find(current_user.id)
+            fjob.name=current_user.name
+            fjob.nickname=current_user.nickname
+            fjob.portfolio_img=params[:fjob_portfolio_img]
+            fjob.career=params[:fjob_career]
+            blah=""
+            params[:fjob_category].each { |a| blah+=a + " "}
+           
+            fjob.category=blah
+            fjob.contract=params[:fjob_contract]
+            date_m=""
+             params[:fjob_date].each { |a| date_m+=a + " "}
+            fjob.date=date_m
+            fjob.starttime=params[:fjob_starttime]      
+            fjob.endtime=params[:fjob_endtime]
+            fjob.timetotal=params[:fjob_timetotal]
+             home_m=""
+             params[:fjob_home_environment].each { |a| home_m+=a + " "}
+            fjob.home_environment=home_m
+            fjob.location=params[:fjob_location]
+            fjob.save
+          redirect_to :action => "show", :id => current_user.id
+    end
+    
     
     def create
             fjob=Fjob.find(current_user.id)
@@ -29,11 +65,15 @@ class FjobController < ApplicationController
         @fjob=Fjob.find(current_user.id)
         @friend=Friendship.all
         @count=0 #요청온 파트너 counter
-        
-       
     end
     
      def homepage
+        if current_user.nil? == true
+        else
+            @fjob=Fjob.find(current_user.id)
+        end
+        @friend=Friendship.all
+        @count=0 #요청온 파트너 counter
         @recommend=Review.all
         @r_category=Fjob.all
         def ratings_calculate(subjectid)
@@ -68,6 +108,7 @@ class FjobController < ApplicationController
     end
     
     def update
+        
         update_fjob=Fjob.find(current_user.id)
         update_fjob.name=current_user.name
         update_fjob.nickname=current_user.nickname
@@ -89,7 +130,7 @@ class FjobController < ApplicationController
        
         update_fjob.location=params[:fjob_location]
         update_fjob.save
-        redirect_to :action => "show", :id => current_user.id
+        redirect_to '/'
     end
     
     def search_result
@@ -99,53 +140,12 @@ class FjobController < ApplicationController
         else
             @c_user=Fjob.find(current_user.id)
         end
-        contract = params[:contract]
-        start_time = params[:start_time]
-        end_time = params[:end_time]
-        city = params[:city]
-        gu = params[:gu]
-        working_time = params[:working_time]
-        if contract.nil? == true
-            contract= 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24
-        end
-        if start_time.nil? == true
-            start_time = Fjob.all
-        end
-        if end_time.nil? == true
-            end_time = Fjob.all
-        end
-        
-        if city.nil? == true
-            city = Fjob.all
-        end
-        if gu.nil? == true
-            gu = Fjob.all
-        end
-        if working_time.nil? == true
-            working_time = Fjob.all
-        end
         # @match = Match.new(params[:div_id_number])
-        @check_data = Fjob.where('contract = ?', contract).where('starttime = ?', start_time).where('endtime = ?', end_time).where('timetotal = ?', working_time).where('location = ? OR location = ?', city, gu)
+        @check_data = Fjob.where('contract = ?', params[:contract]).where('starttime = ?', params[:start_time]).where('endtime = ?', params[:end_time]).where('timetotal = ?', params[:working_time]).where('location = ? OR location = ?', params[:gu], params[:city]).where('date = ?, date = ?, date = ?, date = ?, date = ?, date = ?, date = ?', params[:mon], params[:tue], params[:wed], params[:thu], params[:fri], params[:sat], params[:sun]).where('category = ?, category = ?, category = ?, category = ?, category = ?, category = ?, category = ?, category = ?', params[:create], params[:write], params[:photo], params[:etc], params[:market], params[:edit], params[:trans], params[:design]).where('home_environment =?, home_environment = ?', params[:home], params[:office])
     end
     
     def profile
          @p_job=Fjob.find(params[:id])
          @p_user=User.find(params[:id])
-    end
-    
-    def ratings_calculate(subjectid)
-            r_review=Review.all
-            r_review.each do |x|
-			if x.subject_id==subjectid
-				sum+=x.ratings
-				num_count=num_count+1
-			end
-			if num_count!=0
-				@rating_result= sum/num_count
-			else	
-				@rating_result= "None"
-	        end
-        end
-      
     end
   end

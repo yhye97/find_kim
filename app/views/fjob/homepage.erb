@@ -104,15 +104,277 @@
 			</div>
 				
 			<div class="ui bottom attached tab segment" data-tab="first">
-				<%= render "devise/registrations/edit" %>
-			</div>
-	
-			<div class="ui bottom attached tab segment" data-tab="second">
+				
+				<!-- # render "devise/registrations/edit" -->
 			
+			
+			<div id="userupdate">
+         <form action="/fjob/user_update/<%=@fjob.id%>" method "get" >
+             이름:
+        <input type="text" name="u_name" value = "<%=current_user.name%>"><br>
+        닉네임:
+        <input type="text" name="u_nickname" value = "<%=current_user.nickname%>"><br>
+        전화번호:
+        <input type="integer" name="u_tel" value = "<%=current_user.tel%>"><br>
+        <button type="submit" class="btn btn-primary" >제출</button>
+        </form>
+      </div>
+       <div id="userupdatedd">
+            <%= current_user.name %></br>
+            <%= current_user.nickname %></br>
+            <%= current_user.email %></br>
+            <%= current_user.tel %></br>
+            <button type="submit" id="useredit" class="btn btn-primary" >수정하기</button>
+              <%= link_to "비밀번호 수정하기", :user_edit %>
+       </div>
+       
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+ <script src="//code.jquery.com/jquery.js"></script>
+				<script>
+					
+					
+$("#userupdate").hide();
+
+$("#useredit").click(function() {
+  $("#userupdatedd").hide();
+  $("#userupdate").show();
+  
+});
+				</script>
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="second">
+			<!--추가정보-->
+			
+			<div class="tab-pane" id="messages">
+               
+               <h2></h2>
+               <div class="tab-pane" id="blah">
+               <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>Category</h4></label><br>
+                              <%= @fjob.category%>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Contract</h4></label><br>
+                              <%= @fjob.contract%> month
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Date</h4></label><br>
+                              <%= @fjob.date%>
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="mobile"><h4>Time</h4></label><br>
+                              <%= @fjob.starttime%> ~ <%=@fjob.endtime%>  == Total <%=@fjob.timetotal%> hours
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Environment</h4></label><br>
+                              <% if @fjob.home_environment.include? "outsidework" %>
+                                <%=@fjob.home_environment%><%=@fjob.location%>
+                              <%else%>
+                                <%=@fjob.home_environment%>
+                               <%end%>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Career</h4></label><br>
+                             <%= @fjob.career%>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="password"><h4>Portfolio Image</h4></label><br>
+                              <%if @fjob.portfolio_img==""%>
+                              No Image <br>
+                              <%else%>
+                              <img height="100%" width="100%" src="<%= @fjob.portfolio_img%>"> <br>
+                              <%end%>
+                          
+                      </div>
+                     
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                               
+                            </div>
+                            </div>
+                      
+              	</form>
+              	</div>
+              	 <button class="btn btn-info" id="edit5" ><span class="glyphicon glyphicon-edit"></span> edit</button>
+              	 </div>
+    <div class="form_update" id="form_update_fjob" >         	
+              	<form action="/fjob/update/<%=@fjob.id%>" method "get" >
+        
+    <!--포트폴리오 사진 url -->
+      portfolio_img url:<br>
+    <input type="text" name="fjob_portfolio_img" value = "<%=@fjob.portfolio_img%>"><br>
+    
+     <!--직군-->
+    category:<br>
+    <% if @fjob.category.include? "creator" %>
+        <input type="checkbox" name="fjob_category[]" value ="creator" checked> Creator
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="creator" > Creator
+    <%end%>
+    <% if @fjob.category.include? "editor" %>
+        <input type="checkbox" name="fjob_category[]" value ="editor" checked> Editor
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="editor"> Editor
+    <%end%>
+    <% if @fjob.category.include? "designer" %>
+        <input type="checkbox" name="fjob_category[]" value ="designer" checked> designer
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="designer"> designer
+    <%end%>
+    <% if @fjob.category.include? "photograhper" %>
+        <input type="checkbox" name="fjob_category[]" value ="photograhper" checked> photograhper
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="photograhper"> photograhper
+    <%end%>
+    <% if @fjob.category.include? "translator" %>
+        <input type="checkbox" name="fjob_category[]" value ="translator" checked> translator
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="translator"> translator
+    <%end%>
+    <% if @fjob.category.include? "marketer" %>
+        <input type="checkbox" name="fjob_category[]" value ="marketer" checked> marketer
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="marketer"> marketer
+    <%end%>
+    <% if @fjob.category.include? "writer" %>
+        <input type="checkbox" name="fjob_category[]" value ="writer"  checked> writer<br>
+    <%else%>
+        <input type="checkbox" name="fjob_category[]" value ="writer" > writer<br>
+    <%end%>
+    
+    <!--경력 -->
+    career: <br>
+    <input type="text" name = "fjob_career" value="<%=@fjob.career%>"><br>
+
+   
+   <!--계약기간 -->
+    contract: <br>
+     <input type="number" name ="fjob_contract"  value="<%=@fjob.contract%>">개월<br>
+    
+   
+    <!--근무 시간 -->
+    <!--요일-->
+    date: <br>
+    <% if @fjob.date.include? "monday" %>
+        <input type="checkbox" name="fjob_date[]" value ="monday"> 월요일
+    <%else%>
+        <input type="checkbox" name="fjob_date[]" value ="monday"> 월요일
+    <%end%>
+    <% if @fjob.date.include? "tuesday" %>
+    <input type="checkbox" name="fjob_date[]" value ="tuesday" checked> 화요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="tuesday"> 화요일
+    <%end%>
+    <% if @fjob.date.include? "wednesday" %>
+    <input type="checkbox" name="fjob_date[]" value ="wednesday" checked> 수요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="wednesday"> 수요일
+    <%end%>
+    <% if @fjob.date.include? "thursday" %>
+    <input type="checkbox" name="fjob_date[]" value ="thursday" checked> 목요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="thursday"> 목요일
+    <%end%>
+    <% if @fjob.date.include? "friday" %>
+    <input type="checkbox" name="fjob_date[]" value ="friday" checked> 금요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="friday"> 금요일
+    <%end%>
+    <% if @fjob.date.include? "saturday" %>
+    <input type="checkbox" name="fjob_date[]" value ="saturday" checked> 토요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="saturday"> 토요일
+    <%end%>
+    <% if @fjob.date.include? "sunday" %>
+    <input type="checkbox" name="fjob_date[]" value ="sunday" checked> 일요일
+    <%else%>
+    <input type="checkbox" name="fjob_date[]" value ="sunday"> 일요일
+    <%end%>
+    <br>
+     <!--시간-->
+    
+     time: <br>
+    start time:
+      <input type="number" name = "fjob_starttime" value="<%=@fjob.starttime%>" min="0" max="24">
+    end time:
+     <input type="number" name ="fjob_endtime" value="<%=@fjob.endtime%>" min="0" max="24">
+    <br>
+    total time:
+    <input type="number" name ="fjob_timetotal" value="<%=@fjob.timetotal%>" min="0" max="24"> 시간
+    
+    <br>
+     <!--근무환경-->
+      <!--재택근무여부-->
+      home_environment: <br>
+    <% if @fjob.home_environment.include? "homework" %>
+        <input type="checkbox" name="fjob_home_environment[]" value="homework" checked> 재택근무<br>
+    <%else%>
+        <input type="checkbox" name="fjob_home_environment[]" value="homework" > 재택근무<br>
+    <%end%>
+    <% if @fjob.home_environment.include? "outsidework" %>
+        <input type="checkbox" name="fjob_home_environment[]" value="outsidework"  checked>출근<br>
+    <%else%>
+        <input type="checkbox" name="fjob_home_environment[]" value="outsidework" >출근<br>
+    <%end%>
+    <input type="text" name="fjob_location" value= "<%=@fjob.location%>"><%=@fjob.location%> 지역 / OO시 OO군<br>
+  <button type="submit" class="btn btn-primary" >제출</button>
+</form>
+</div>
+</div>
+			<!--여기까지-->
+			
+			<script>
+				
+				
+$("#form_update_fjob").hide();
+
+$("#edit5").click(function() {
+  $("#blah").hide();
+  $("#form_update_fjob").show();
+  
+  
+  $("te").each(function() {
+    var content = $(this).html();
+    });
+
+  $("#save4").show();
+  $(".info4").fadeIn("fast");
+});
+
+$("#submit1").click(function() {
+  $("#tab-pane").show();
+  $("#form_update_fjob").hide();
+  
+});
+			</script>
 			</div>
 			
 			<div class="ui bottom attached tab segment" data-tab="third">
 			
+			
+				
 			</div>
 		</div>
 	
@@ -134,7 +396,7 @@
       <div class="ui medium image">
         <i mg src="/assets/nan.jpg">
       </div>
-
+ 
       
      
       <%if current_user.profile_img==""%>
@@ -218,134 +480,230 @@
 				<div class="section1_content">
 					<div class="ui padded left aligned segment">
 
+
+<!-- Detail Search -->
 						<form class="ui form" action="/fjob/search_result" method="post">
+							<!--category-->
+							<div class="field">
+							<div> <h4 class="ui header">CATEGORY</h4> </div>
+							<div class="ui fluid mini multiple search selection dropdown">
+							  <input name="tags" type="hidden">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">SELECT!</div>
+							  <div class="menu">
+							    <div class="item" name="create" data-value="create">CREATOR</div>
+									<div class="item" name="edit" data-value="edit">EDITOR</div>
+									<div class="item" name="write" data-value="write">WRITER</div>
+									<div class="item" name="photo" data-value="photo">PHOTOGRAPHER</div>
+									<div class="item" name="trans" data-value="trans">TRANSLATOR</div>
+									<div class="item" name="design" data-value="design">DESIGNER</div>
+									<div class="item" name="market" data-value="market">MARKETER</div>
+									<div class="item" name="etc" data-value="etc">ETC</div>
+							  </div>
+							</div>
+							</div>
 							
-							<div>
-								<h4 class="ui header">CATEGORY</h4>
+							<!--day-->
+							<div class="field">
+							<div> <h4 class="ui header">DAY</h4> </div>
+							<div class="ui fluid mini multiple search selection dropdown">
+							  <input name="tags" type="hidden">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">SELECT!</div>
+							  <div class="menu">
+							    <div class="item" name="mon" data-value="mon">Mon</div>
+									<div class="item" name="tue" data-value="tue">Tue</div>
+									<div class="item" name="wen" data-value="wen">Wen</div>
+									<div class="item" name="thu" data-value="thu">Thu</div>
+									<div class="item" name="fri" data-value="fri">Fri</div>
+									<div class="item" name="sat" data-value="sat">Sat</div>
+									<div class="item" name="sun" data-value="sun">Sun</div>
+							  </div>
 							</div>
-							<div class="inline field">
-
-											<div class="choose_content checkboxes">
-												<input class="category_checkbox" type="checkbox" name="create" id="create" value="create"><label for="create" class="highlight check_catagory">CREATOR</label>
-
-												<input class="category_checkbox" type="checkbox" name="edit" id="edit" value="edit"><label for="edit" class="highlight check_catagory">EDITOR</label>
-
-												<input class="category_checkbox" type="checkbox" name="write" id="write" value="write"><label for="write" class="highlight check_catagory">WRITER</label>
-
-												<input class="category_checkbox" type="checkbox" name="photo" id="photo" value="photo"><label for="photo" class="highlight check_catagory">PHOTOGRAPHER</label>
-
-												<input class="category_checkbox" type="checkbox" name="design" id="design" value="design"><label for="design" class="highlight check_catagory">DESIGNER</label>
-
-												<input class="category_checkbox" type="checkbox" name="trans" id="trans" value="trans"><label for="trans" class="highlight check_catagory">TRANSLATOR</label>
-
-												<input class="category_checkbox" type="checkbox" name="market" id="market" value="market"><label for="market" class="highlight check_catagory">MARKETER</label>
-
-												<input class="category_checkbox" type="checkbox" name="etc" id="etc" value="etc"><label for="etc" class="highlight check_catagory">ETC</label>
-
-												<input class="category_checkbox" type="checkbox" name="category-check-all" id="category-check-all"><label for="category-check-all" class="highlight check_catagory">ALL</label>
-
-											</div>
-
-
-									</div>
-
-							<div>
-								<h4 class="ui header">DAY</h4>
 							</div>
-							<div class="inline field">						
-									<div class="choose_content checkboxes">
-
-										<input class="day_checkbox" type="checkbox" name="mon" id="mon" value="mon"><label for="mon" class="highlight check_day">Mon</label>
-
-										<input class="day_checkbox" type="checkbox" name="tue" id="tue" value="tue"><label for="tue" class="highlight check_day">Tue</label>
-
-										<input class="day_checkbox" type="checkbox" name="wed" id="wed" value="wed"><label for="wed" class="highlight check_day">Wen</label>
-
-										<input class="day_checkbox" type="checkbox" name="thu" id="thu" value="thu"><label for="thu" class="highlight check_day">Thu</label>
-
-										<input class="day_checkbox" type="checkbox" name="fri" id="fri" value="fri"><label for="fri" class="highlight check_day">Fri</label>
-
-										<input class="day_checkbox" type="checkbox" name="sat" id="sat" value="sat"><label for="sat" class="highlight check_day">Sat</label>
-
-										<input class="day_checkbox" type="checkbox" name="sun" id="sun" value="sun"><label for="sun" class="highlight check_day">Sun</label>
-
-										<input class="day_checkbox" type="checkbox" name="day-check-all" id="day-check-all"><label for="day-check-all" class="highlight check_catagory">ANY DAY</label>
-
-										</div>
-									</div>
-
-							<div>
-								<h4 class="ui header">CONTRACT</h4>
+							
+							<!--workat-->
+							<div class="field">
+							<div> <h4 class="ui header">WORK AT</h4> </div>
+							<div class="ui fluid mini multiple search selection dropdown">
+							  <input name="tags" type="hidden">
+							  <i class="dropdown icon"></i>
+							  <div class="default text">SELECT!</div>
+							  <div class="menu">
+							    <div class="item" name="home" data-value="home">HOME</div>
+									<div class="item" name="office" data-value="office">OFFICE</div>
+							  </div>
 							</div>
-							<div class="inline field">
-									<div class="choose_content numberboxes">
-										<div class="ui transparent mini input">
-											<input type="number" min="0" max="24" placeholder="12" id = "contract">
-											<label>개월</label>
-										</div>
-									</div>
 							</div>
-
-							<div>
-								<h4 class="ui header">TIME</h4>
+							
+							<div class="field">
+							<div> <h4 class="ui header">TIME</h4> </div>
+							<div class="ui mini right labeled input">
+								<input type="number" min="0" max="24" placeholder="12" id="start_time"name="start_time">
+							  <div class="ui basic label">시 부터</div>
+							  
+								<input type="number" min="0" max="24" placeholder="12" id="end_time"name="end_time">
+							  <div class="ui basic label">시 까지</div>
 							</div>
-							<div class="inline field">
-									<div class="choose_content numberboxes">
-										<div class="ui transparent mini input">
-											<input type="number" min="0" max="24" placeholder="12" id = "start_time" >
-											<label>시 부터</label>
-										</div>
+							</div>
+							
+							<div class="field">
+							<div class="six wide field">
+							<div> <h4 class="ui header">TOTAL TIME</h4> </div>
+							<div class="ui mini right labeled input">
+							<input class="two wide" type="number" min="0" max="12" placeholder="12" id="working_time"name="working_time">
+							<div class="ui basic label">시간</div>
+							</div>
+							</div>
+							
+							<div class="six wide field">
+							<div> <h4 class="ui header">CONTRACT</h4> </div>
+							<div class="ui mini right labeled input">
+								<input type="number" min="0" max="24" placeholder="12" id="contract"name="contract">
+							  <div class="ui basic label">개월</div>
+							</div>
+							</div>
+							</div>
+							
+							<div class="field">
+							<div> <h4 class="ui header">LOCATION</h4> </div>
+							<div class="ui mini right labeled input">
+								<input type="text" placeholder="서울" id="city" name="city">
+							  <div class="ui basic label">시</div>
+							  
+							  <input type="text" placeholder="노원" id="gu" name="gu">
+							  <div class="ui basic label">구</div>
+							</div>
+							</div>
+							
+							
+							
+							<!--<div>-->
+							<!--	<h4 class="ui header">CATEGORY</h4>-->
+							<!--</div>-->
+							<!--<div class="inline field">-->
 
-										<div class="ui transparent mini input">
-											<input type="number" min="0" max="24" placeholder="12" id = "end_time" >
-											<label>시 까지</label>
-										</div>
+							<!--				<div class="choose_content checkboxes">-->
+							<!--					<input class="category_checkbox" type="checkbox" name="create" id="create" value="create"><label for="create" class="highlight check_catagory">CREATOR</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="edit" id="edit" value="edit"><label for="edit" class="highlight check_catagory">EDITOR</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="write" id="write" value="write"><label for="write" class="highlight check_catagory">WRITER</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="photo" id="photo" value="photo"><label for="photo" class="highlight check_catagory">PHOTOGRAPHER</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="design" id="design" value="design"><label for="design" class="highlight check_catagory">DESIGNER</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="trans" id="trans" value="trans"><label for="trans" class="highlight check_catagory">TRANSLATOR</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="market" id="market" value="market"><label for="market" class="highlight check_catagory">MARKETER</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="etc" id="etc" value="etc"><label for="etc" class="highlight check_catagory">ETC</label>-->
+
+							<!--					<input class="category_checkbox" type="checkbox" name="category-check-all" id="category-check-all"><label for="category-check-all" class="highlight check_catagory">ALL</label>-->
+
+							<!--				</div>-->
+							<!--		</div>-->
+
+							<!--<div>-->
+							<!--	<h4 class="ui header">DAY</h4>-->
+							<!--</div>-->
+							<!--<div class="inline field">						-->
+							<!--		<div class="choose_content checkboxes">-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="mon" id="mon" value="mon"><label for="mon" class="highlight check_day">Mon</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="tue" id="tue" value="tue"><label for="tue" class="highlight check_day">Tue</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="wed" id="wed" value="wen"><label for="wed" class="highlight check_day">Wen</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="thu" id="thu" value="thu"><label for="thu" class="highlight check_day">Thu</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="fri" id="fri" value="fri"><label for="fri" class="highlight check_day">Fri</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="sat" id="sat" value="sat"><label for="sat" class="highlight check_day">Sat</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="sun" id="sun" value="sun"><label for="sun" class="highlight check_day">Sun</label>-->
+
+							<!--			<input class="day_checkbox" type="checkbox" name="day-check-all" id="day-check-all"><label for="day-check-all" class="highlight check_catagory">ANY DAY</label>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+
+							<!--<div>-->
+							<!--	<h4 class="ui header">CONTRACT</h4>-->
+							<!--</div>-->
+							<!--<div class="inline field">-->
+							<!--		<div class="choose_content numberboxes">-->
+							<!--			<div class="ui transparent mini input">-->
+							<!--				<input type="number" min="0" max="24" placeholder="12" id = "contract">-->
+							<!--				<label>개월</label>-->
+							<!--			</div>-->
+							<!--		</div>-->
+							<!--</div>-->
+
+							<!--<div>-->
+							<!--	<h4 class="ui header">TIME</h4>-->
+							<!--</div>-->
+							<!--<div class="inline field">-->
+							<!--		<div class="choose_content numberboxes">-->
+							<!--			<div class="ui transparent mini input">-->
+							<!--				<input type="number" min="0" max="24" placeholder="12" id = "start_time" >-->
+							<!--				<label>시 부터</label>-->
+							<!--			</div>-->
+
+							<!--			<div class="ui transparent mini input">-->
+							<!--				<input type="number" min="0" max="24" placeholder="12" id = "end_time" >-->
+							<!--				<label>시 까지</label>-->
+							<!--			</div>-->
 										
-										<div class="ui transparent mini input">
-											<input type="number" min="0" max="12" placeholder="12" id = "working_time">
-											<label>TOTAL TIME</label>
-										</div>
-									</div>
-								</div>
+							<!--			<div class="ui transparent mini input">-->
+							<!--				<input type="number" min="0" max="12" placeholder="12" id = "working_time">-->
+							<!--				<label>TOTAL TIME</label>-->
+							<!--			</div>-->
+							<!--		</div>-->
+							<!--	</div>-->
 							
-							<div>
-								<h4 class="ui header">LOCATION</h4>
-							</div>
-							<div class="inline mini field">
-								<div class="choose_content textboxes">
+				<!--			<div>-->
+				<!--				<h4 class="ui header">LOCATION</h4>-->
+				<!--			</div>-->
+				<!--			<div class="inline mini field">-->
+				<!--				<div class="choose_content textboxes">-->
 									
 	
-    <div class="one wide field">
+    <!--<div class="one wide field">-->
 										
 											
-											<input type="text" id="city" placeholder="서울" onchange="checkFilled();" >
-											<label>시</label>
+				<!--							<input type="text" id="city" placeholder="서울" onchange="checkFilled();" >-->
+				<!--							<label>시</label>-->
 											
-										</div>
+				<!--						</div>-->
 
-										<div class="ui three wide transparent mini input">
-											<input type="text" id = "gu" placeholder="노원" >
-											<label>구</label>
-										</div>
-									</div>
-								</div>
+				<!--						<div class="ui three wide transparent mini input">-->
+				<!--							<input type="text" id = "gu" placeholder="노원" >-->
+				<!--							<label>구</label>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
 							
 							
-							<div>
-								<h4 class="ui header">WORK AT</h4>
-							</div>
-							<div class="inline field">
+							<!--<div>-->
+							<!--	<h4 class="ui header">WORK AT</h4>-->
+							<!--</div>-->
+							<!--<div class="inline field">-->
 
-									<div class="choose_content checkboxes">
+							<!--		<div class="choose_content checkboxes">-->
 
-										<input class="workat_checkbox" type="checkbox" name="home" id="home" value="home"><label for="home" class="highlight check_day">HOME</label>
+							<!--			<input class="workat_checkbox" type="checkbox" name="home" id="home" value="home"><label for="home" class="highlight check_day">HOME</label>-->
 
-										<input class="workat_checkbox" type="checkbox" name="office" id="office" value="office"><label for="office" class="highlight check_day">OFFICE</label>
+							<!--			<input class="workat_checkbox" type="checkbox" name="office" id="office" value="office"><label for="office" class="highlight check_day">OFFICE</label>-->
 
-										<input class="workat_checkbox" type="checkbox" name="workat-check-all" id="workat-check-all"><label for="workat-check-all" class="highlight check_catagory">ANY WHERE</label>
+							<!--			<input class="workat_checkbox" type="checkbox" name="workat-check-all" id="workat-check-all"><label for="workat-check-all" class="highlight check_catagory">ANY WHERE</label>-->
 
-										</div>
-									</div>
+							<!--			</div>-->
+							
+							
+							<!--</div>-->
 
 							<div>
 								<input class="fluid ui button" type="submit" value="FIND" id = "search_second"></input>
@@ -417,7 +775,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_creator_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -453,7 +811,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_editor_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -488,7 +846,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_designer_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -524,7 +882,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_producer_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -561,7 +919,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_translator_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -597,7 +955,7 @@
           							 <%sum=0%>
 		    									<%num_count=0%>
 											<%@myreview.each do |x|%>
-													<%if x.subject_id==current_user.id%>
+													<%if x.subject_id==r_writer_user.id%>
 														<%sum+=x.ratings%>
 														<%num_count+=1%>
 													<%end%>
@@ -613,6 +971,9 @@
 				</article>
 			</div>
 			</div>
+			
+			
+			
 			
 		</div>
 	</div>
@@ -758,6 +1119,16 @@
         });
     }
 	});
+	
+	$('.ui.dropdown').dropdown('show');
+	
+	$('.tag.example .ui.dropdown')
+  .dropdown({
+    allowAdditions: true
+  })
+;
+	
+	
 	
 // $("#search_second").click(function() {
 //     if ($("input:checkbox[id='create']").is(:checked) == false

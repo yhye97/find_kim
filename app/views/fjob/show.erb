@@ -54,13 +54,38 @@ show html
 					<%if x.subject_id==current_user.id%>
 							<%sum+=x.ratings%>
 							<%num_count+=1%>
-					<%end%>
+						<%end%>
 				<%end%>
 					<%if num_count!=0%>
 						<div class="panel-body"><%=sum/num_count%>점</div>
 				    <%else%>
 					    <div class="panel-body">None </div>
 					<%end%>
+					
+					Review from Partners: <br>
+		            <%@myreview.each do |x|%>
+		                <%if x.subject_id==current_user.id%>
+		                    <%=User.find(x.rater_id).nickname%>
+		                    <%if x.review_text==""%>
+		                        <%if x.ratings==5%>
+		                        일하기 너무 좋았어요
+		                        <%elsif x.ratings==4%>
+		                        일하기 좋았어요
+		                        <%elsif x.ratings==3%>
+		                        일하기 보통이었어요
+		                        <%elsif x.ratings==2%>
+		                        일하기 별로였어요
+		                        <%elsif x.ratings==1%>
+		                        일하기 진짜 별로였어요
+		                        <%elsif x.ratings==0%>
+		                        일하기 최악이었어요
+		                        <%else%>
+		                        <%end%>
+		                    <%else%>
+		                    <%=x.review_text%>
+		                    <%end%>
+		                <%end%>
+		            <%end%>
           </div>
           
           
@@ -102,18 +127,32 @@ show html
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-              <%= link_to "change", :user_edit %>
+            
            
             
 
   <table class="table">
     <tbody>
       <tr>
-        <td><%= current_user.name %></br>
-        <%= current_user.nickname %></br>
-        <%= current_user.email %></br>
-        <%= current_user.tel %>
-        </td>
+       <div id="userupdate">
+         <form action="/fjob/user_update/<%=@fjob.id%>" method "get" >
+             이름:
+        <input type="text" name="u_name" value = "<%=current_user.name%>"><br>
+        닉네임:
+        <input type="text" name="u_nickname" value = "<%=current_user.nickname%>"><br>
+        전화번호:
+        <input type="integer" name="u_tel" value = "<%=current_user.tel%>"><br>
+        <button type="submit" class="btn btn-primary" >제출</button>
+        </form>
+      </div>
+       <div id="userupdatedd">
+            <%= current_user.name %></br>
+            <%= current_user.nickname %></br>
+            <%= current_user.email %></br>
+            <%= current_user.tel %></br>
+            <button type="submit" id="useredit" class="btn btn-primary" >수정하기</button>
+              <%= link_to "비밀번호 수정하기", :user_edit %>
+       </div>
       </tr>
     </tbody>
 
@@ -335,12 +374,18 @@ show html
                 
                <% @friend.each do |x|%>
                      <% if x.friend_id == current_user.id%>
-                       <%if x.pending ==false%>
-                          <%_user=User.find(x.friend_id)%>
+                       <%if x.pending == false%>
+                          <%_user=User.find(x.user_id)%>
                          <a href="/profile/<%=_user.id%>"><%=_user.name%></a>
                         <button onclick="<%x.pending =1 %>">accept</button>
                         <%x.save%>
-                      <%end%>
+                        <%end%>
+                        
+                        <form action="/friendship/decline" method "get" >
+                            <input type="hidden" name="decline_id" value="<%=x.id%>">
+                            <button type="submit" class="btn btn-primary">decline</button>
+                        </form>
+                      
                     <%end%>
               <%end%>
                </div>
@@ -408,7 +453,6 @@ show html
                                 Review_text:
                                 <input type="text" name="n_rtext" value="<%=@edit_review.review_text%>"> <br>
                                <button class="btn btn-info" type="submit" id="submit1"><span class="glyphicon glyphicon-edit"></span> 제출</button>
-                               
                               <button class="btn btn-success" id="save5"><span class="glyphicon glyphicon-save"></span> save</button>
                             </form>
                                 <%else%>
@@ -446,8 +490,7 @@ $("#edit5").click(function() {
   
   $("te").each(function() {
     var content = $(this).html();
-    $(this).html("<textarea>" + content + "</textarea>");
-  });
+    });
 
   $("#save4").show();
   $(".info4").fadeIn("fast");
@@ -456,6 +499,15 @@ $("#edit5").click(function() {
 $("#submit1").click(function() {
   $("#tab-pane").show();
   $("#form_update_fjob").hide();
+  
+});
+
+
+$("#userupdate").hide();
+
+$("#useredit").click(function() {
+  $("#userupdatedd").hide();
+  $("#userupdate").show();
   
 });
 

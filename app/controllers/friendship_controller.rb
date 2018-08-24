@@ -13,7 +13,11 @@ class FriendshipController < ApplicationController
     
   end
 
-  
+  def decline
+        Friendship.destroy(params[:decline_id])
+
+    redirect_to '/fjob/show/:id'
+  end
 
   def friendlist
    @friend=Friendship.all

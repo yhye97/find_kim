@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20180813075730) do
     t.text    "review_text"
     t.integer "rater_id"
     t.integer "subject_id"
-    t.integer "total_rater_num"
   end
 
   create_table "users", force: :cascade do |t|
